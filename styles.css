@@ -301,5 +301,85 @@ a:hover{opacity:.92}
   white-space: nowrap;
 }
 
+/* Contact form */
+.cform{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-top:10px;
+}
+
+.cform__row{display:flex; flex-direction:column; gap:8px}
+
+.cform__label{
+  font-size:13px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.cform__input,
+.cform__textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color: var(--text);
+  outline: none;
+}
+
+.cform__textarea{resize:vertical; min-height:140px}
+
+.cform__input:focus,
+.cform__textarea:focus{
+  border-color: rgba(255,255,255,.20);
+  background: rgba(255,255,255,.05);
+}
+
+.cform__actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:4px;
+}
+
+.cform__btn{
+  padding:12px 16px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font-weight:700;
+  letter-spacing:-.02em;
+  cursor:pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.cform__btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.20);
+}
+
+.cform__note{
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.pill-link{
+  display:inline-block;
+  margin-left:8px;
+  padding:8px 10px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+}
+
+.pill-link:hover{
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+}
+
 
 
