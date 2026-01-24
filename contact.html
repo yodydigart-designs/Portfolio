@@ -4,18 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact</title>
-  <link rel="stylesheet" href="./styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <link rel="icon" type="image/svg+xml" href="./assets/logo.svg" />
+  <link rel="stylesheet" href="./styles.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div class="layout">
-    <!-- Copy sidebar from index -->
+    <!-- LEFT SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar__top">
-        <a class="brand" href="./index.html" aria-label="Home">
+        <div class="brand" onclick="location.href='./index.html'">
           <img src="./assets/logo.svg" alt="Logo" class="brand__logo" />
-        </a>
+          <span class="brand__name">Odisseas Tsantekides</span>
+        </div>
 
         <nav class="nav">
           <p class="nav__label">Projects</p>
@@ -41,37 +45,85 @@
         <nav class="nav nav--secondary">
           <ul class="nav__list nav__list--secondary">
             <li><a href="./about.html">About</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./contact.html" class="active">Contact</a></li>
           </ul>
         </nav>
       </div>
 
       <div class="sidebar__footer">
-        <small>© <span id="year"></span> Your Name</small>
+        <small>© <span id="year"></span> Odisseas</small>
       </div>
     </aside>
 
+    <!-- RIGHT CONTENT -->
     <main class="content">
       <div class="proj-wrap">
-        <h1 style="margin-top:0;">Contact</h1>
-        <div class="proj-card">
-          <p style="margin-bottom:12px;">Email me:</p>
-          <p>
-            <a href="mailto:youremail@gmail.com" style="color:var(--text); border:1px solid var(--soft); padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.02); display:inline-block;">
-              youremail@gmail.com
-            </a>
-          </p>
+        <div class="proj-top">
+          <div>
+            <div class="breadcrumb"><a href="./index.html">Home</a> / Contact</div>
+            <h1 style="margin:8px 0 0 0;">Contact</h1>
+          </div>
+        </div>
 
-          <p style="margin-top:14px; color:var(--muted);">
-            Tip: Αν θες φόρμα χωρίς backend, βάλε Formspree (free tier) ή Netlify Forms (αν κάνεις deploy σε Netlify).
-          </p>
+        <div class="proj-body">
+          <div class="proj-card">
+            <h2 style="margin:0 0 10px 0;">Send a message</h2>
+            <p style="margin:0 0 16px 0; color:var(--muted);">
+              I usually reply within 24–48h.
+            </p>
+
+            <form class="cform" action="https://formspree.io/f/mdaebvzr" method="POST">
+              <!-- Honeypot anti-spam (leave empty) -->
+              <input type="text" name="_gotcha" style="display:none">
+
+              <div class="cform__row">
+                <label class="cform__label" for="name">Name</label>
+                <input class="cform__input" id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+              </div>
+
+              <div class="cform__row">
+                <label class="cform__label" for="email">Email</label>
+                <input class="cform__input" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+              </div>
+
+              <div class="cform__row">
+                <label class="cform__label" for="message">Message</label>
+                <textarea class="cform__textarea" id="message" name="message" rows="6" placeholder="Tell me what you want to build…" required></textarea>
+              </div>
+
+              <!-- Optional: email subject in your inbox -->
+              <input type="hidden" name="_subject" value="New message from portfolio">
+
+              <!-- Redirect to same page with success param -->
+              <input type="hidden" name="_redirect" value="https://portfolio-8l6.pages.dev/contact.html?sent=1">
+
+              <div class="cform__actions">
+                <button class="cform__btn" type="submit">Send</button>
+                <span id="sentNote" class="cform__note" aria-live="polite"></span>
+              </div>
+            </form>
+          </div>
+
+          <div class="proj-card">
+            <h2 style="margin:0 0 10px 0;">Direct</h2>
+            <p style="margin:0; color:var(--muted); line-height:1.6;">
+              Email:
+              <a class="pill-link" href="mailto:youremail@gmail.com">youremail@gmail.com</a>
+            </p>
+          </div>
         </div>
       </div>
+
       <script>
         document.getElementById("year").textContent = new Date().getFullYear();
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("sent") === "1") {
+          const el = document.getElementById("sentNote");
+          if (el) el.textContent = "Sent ✅ I’ll get back to you soon.";
+        }
       </script>
     </main>
   </div>
 </body>
 </html>
-
