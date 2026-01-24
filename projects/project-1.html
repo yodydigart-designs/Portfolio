@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project 01 — Portraits</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <!-- reuse same sidebar by copy-paste from index (ή κάνεις include αργότερα με framework) -->
+    <aside class="sidebar">
+      <div class="sidebar__top">
+        <a class="brand" href="../index.html" aria-label="Home">
+          <img src="../assets/logo.svg" alt="Logo" class="brand__logo" />
+        </a>
+
+        <nav class="nav">
+          <p class="nav__label">Projects</p>
+          <ul class="nav__list">
+            <li><a href="./project-1.html">Project 01 — Portraits</a></li>
+            <li><a href="./project-2.html">Project 02 — NoShame</a></li>
+            <li><a href="./project-3.html">Project 03 — Label Design</a></li>
+            <li><a href="./project-4.html">Project 04 — UI Concept</a></li>
+          </ul>
+        </nav>
+
+        <div class="social">
+          <p class="nav__label">Social</p>
+          <ul class="social__list">
+            <li><a href="https://instagram.com/USERNAME" target="_blank" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://behance.net/USERNAME" target="_blank" rel="noreferrer">Behance</a></li>
+            <li><a href="https://www.linkedin.com/in/USERNAME" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar__spacer"></div>
+
+        <nav class="nav nav--secondary">
+          <ul class="nav__list nav__list--secondary">
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sidebar__footer">
+        <small>© <span id="year"></span> Your Name</small>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="proj-wrap">
+        <div class="proj-top">
+          <div>
+            <div class="breadcrumb"><a href="../index.html">Home</a> / Project 01</div>
+            <h1 style="margin:8px 0 0 0;">Portraits</h1>
+          </div>
+          <a href="../index.html" style="color:var(--muted); border:1px solid var(--soft); padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.02);">
+            ← Back
+          </a>
+        </div>
+
+        <div class="proj-hero">
+          <img src="../assets/p1-cover.jpg" alt="Project hero image" />
+        </div>
+
+        <div class="proj-body">
+          <div class="proj-card">
+            <h2>Overview</h2>
+            <p>Short description of the concept, mood, goal, role, tools.</p>
+          </div>
+
+          <div class="proj-card">
+            <h2>Process</h2>
+            <p>What you explored, iterations, typography, layout decisions, references.</p>
+          </div>
+
+          <div class="proj-card">
+            <h2>Final</h2>
+            <p>Add more images below, mockups, close-ups, and a link to Behance if needed.</p>
+          </div>
+
+          <div class="proj-card">
+            <h2>Gallery</h2>
+            <p>
+              Tip: βάλε εικόνες μία-μία:
+              <br><br>
+              <img src="../assets/p1-1.jpg" alt="" style="width:100%; border-radius:16px; border:1px solid var(--soft); margin-top:12px;">
+              <img src="../assets/p1-2.jpg" alt="" style="width:100%; border-radius:16px; border:1px solid var(--soft); margin-top:12px;">
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </main>
+  </div>
+</body>
+</html>
