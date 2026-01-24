@@ -242,3 +242,32 @@ a:hover{opacity:.92}
   .content{padding:20px 16px}
   .grid{grid-template-columns:1fr}
 }
+
+/* Active link state (sidebar) */
+.nav__list a.active,
+.nav__list a[aria-current="page"]{
+  background: rgba(255,255,255,.05);
+  border-color: rgba(255,255,255,.14);
+  color: var(--text);
+}
+
+/* Slight underline indicator */
+.nav__list a.active::after{
+  content:"";
+  display:block;
+  height:2px;
+  margin-top:8px;
+  border-radius:999px;
+  background: rgba(255,255,255,.18);
+}
+
+/* Card hover: a bit more premium */
+.card:hover .card__media img{
+  transform: scale(1.02);
+  transition: transform .35s ease;
+}
+.card__media img{
+  transition: transform .35s ease;
+}
+
+
