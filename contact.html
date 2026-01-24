@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <!-- Copy sidebar from index -->
+    <aside class="sidebar">
+      <div class="sidebar__top">
+        <a class="brand" href="./index.html" aria-label="Home">
+          <img src="./assets/logo.svg" alt="Logo" class="brand__logo" />
+        </a>
+
+        <nav class="nav">
+          <p class="nav__label">Projects</p>
+          <ul class="nav__list">
+            <li><a href="./projects/project-1.html">Project 01 — Portraits</a></li>
+            <li><a href="./projects/project-2.html">Project 02 — NoShame</a></li>
+            <li><a href="./projects/project-3.html">Project 03 — Label Design</a></li>
+            <li><a href="./projects/project-4.html">Project 04 — UI Concept</a></li>
+          </ul>
+        </nav>
+
+        <div class="social">
+          <p class="nav__label">Social</p>
+          <ul class="social__list">
+            <li><a href="https://instagram.com/USERNAME" target="_blank" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://behance.net/USERNAME" target="_blank" rel="noreferrer">Behance</a></li>
+            <li><a href="https://www.linkedin.com/in/USERNAME" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar__spacer"></div>
+
+        <nav class="nav nav--secondary">
+          <ul class="nav__list nav__list--secondary">
+            <li><a href="./about.html">About</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sidebar__footer">
+        <small>© <span id="year"></span> Your Name</small>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="proj-wrap">
+        <h1 style="margin-top:0;">Contact</h1>
+        <div class="proj-card">
+          <p style="margin-bottom:12px;">Email me:</p>
+          <p>
+            <a href="mailto:youremail@gmail.com" style="color:var(--text); border:1px solid var(--soft); padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.02); display:inline-block;">
+              youremail@gmail.com
+            </a>
+          </p>
+
+          <p style="margin-top:14px; color:var(--muted);">
+            Tip: Αν θες φόρμα χωρίς backend, βάλε Formspree (free tier) ή Netlify Forms (αν κάνεις deploy σε Netlify).
+          </p>
+        </div>
+      </div>
+      <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+      </script>
+    </main>
+  </div>
+</body>
+</html>
