@@ -270,4 +270,36 @@ a:hover{opacity:.92}
   transition: transform .35s ease;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.03);
+  padding: 14px 18px;
+  border-radius: 16px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background .25s ease, border-color .25s ease;
+}
+
+.brand:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.brand__logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.brand__name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+
 
