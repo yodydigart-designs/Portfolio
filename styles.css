@@ -380,6 +380,32 @@ a:hover{opacity:.92}
   background: rgba(255,255,255,.06);
 }
 
+/* Masonry grid for projects (cards shrink to image size) */
+.grid {
+  columns: 2;
+  column-gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .grid { columns: 1; }
+}
+
+/* each project card */
+.card {
+  break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 24px;
+}
+
+/* image keeps its own natural height */
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
 
 
 
