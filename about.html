@@ -4,28 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon2.svg" />
-  <link rel="stylesheet" href="./styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div class="layout">
-    <!-- Copy sidebar from index -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar__top">
-        <a class="brand" href="./index.html" aria-label="Home">
-          <img src="./assets/logo.svg" alt="Logo" class="brand__logo" />
+        <a class="brand" href="/index.html" aria-label="Home">
+          <img src="/assets/logo.svg" alt="Logo" class="brand__logo" />
           <span class="brand__name">Odisseas Tsantekides</span>
         </a>
 
         <nav class="nav">
           <p class="nav__label">Projects</p>
           <ul class="nav__list">
-            <li><a href="./projects/project-1.html">Aris Kavalariou</a></li>
-            <li><a href="./projects/project-2.html">Domain Tsantekides</a></li>
-            <li><a href="./projects/project-3.html">Raw Frequencies</a></li>
-            <li><a href="./projects/project-4.html">Selected Small Works</a></li>
+            <li><a href="/projects/project-1.html">Aris Kavalariou</a></li>
+            <li><a href="/projects/project-2.html">Domain Tsantekides</a></li>
+            <li><a href="/projects/project-3.html">Raw Frequencies</a></li>
+            <li><a href="/projects/project-4.html">Selected Small Works</a></li>
           </ul>
         </nav>
 
@@ -42,8 +43,8 @@
 
         <nav class="nav nav--secondary">
           <ul class="nav__list nav__list--secondary">
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="/about.html" class="active">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -53,23 +54,186 @@
       </div>
     </aside>
 
+    <!-- CONTENT -->
     <main class="content">
       <div class="proj-wrap">
-        <h1 style="margin-top:0;">About</h1>
-        <div class="proj-card">
-          <p>BLA BLA BLA</p>
+
+        <div class="proj-top">
+          <div>
+            <div class="breadcrumb"><a href="/index.html">Home</a> / About</div>
+            <h1 style="margin-top:0;">About</h1>
+          </div>
+          <a class="back-btn" href="/index.html">← Back</a>
         </div>
+
+        <!-- ABOUT LAYOUT: logo left / text right -->
+        <section class="about-block">
+          <div class="about-block__logo">
+            <img src="/assets/logo.svg" alt="Odisseas Tsantekides logo">
+          </div>
+
+          <div class="about-block__content">
+            <!-- EN/GR Tabs -->
+            <div class="lang-tabs" role="tablist" aria-label="Language tabs">
+              <button class="lang-tabs__btn is-active" type="button" data-lang="en" role="tab" aria-selected="true">
+                EN
+              </button>
+              <button class="lang-tabs__btn" type="button" data-lang="gr" role="tab" aria-selected="false">
+                GR
+              </button>
+            </div>
+
+            <!-- EN -->
+            <div class="lang-panel is-visible" data-panel="en" role="tabpanel">
+              <p class="about-lead">
+                I’m Odisseas — a self-taught designer who builds brands, visuals, and digital ideas with a raw, minimal, and urban aesthetic.
+              </p>
+
+              <p>
+                I grew up around music, street culture, and sketchbook-style experimentation — things that still shape the feeling behind every project I create.
+              </p>
+
+              <p>
+                I don’t design for trends.<br>
+                I design for mood, intention, and identity: the things that stay.
+              </p>
+
+              <p>
+                I explore branding, graphic design, album art, UI concepts, and visual storytelling.
+                Every project — personal or client — is a small piece of the world I’m trying to build.
+              </p>
+
+              <p>
+                This portfolio is an ongoing archive of that journey.<br>
+                More work coming soon.
+              </p>
+            </div>
+
+            <!-- GR -->
+            <div class="lang-panel" data-panel="gr" role="tabpanel" hidden>
+              <p class="about-lead">
+                Είμαι ο Οδυσσέας — self-taught designer που χτίζει brands, visuals και digital ιδέες με raw, minimal και urban αισθητική.
+              </p>
+
+              <p>
+                Μεγάλωσα με μουσική, street κουλτούρα και sketchbook πειραματισμό — πράγματα που ακόμα καθορίζουν το “feeling” πίσω από κάθε project που φτιάχνω.
+              </p>
+
+              <p>
+                Δεν σχεδιάζω για τα trends.<br>
+                Σχεδιάζω για το mood, την πρόθεση και την ταυτότητα: αυτά που μένουν.
+              </p>
+
+              <p>
+                Ασχολούμαι με branding, graphic design, album visuals, UI concepts και visual storytelling.
+                Κάθε project — προσωπικό ή για πελάτη — είναι ένα μικρό κομμάτι από τον κόσμο που προσπαθώ να χτίσω.
+              </p>
+
+              <p>
+                Αυτό το portfolio είναι ένα συνεχές αρχείο αυτής της πορείας.<br>
+                Περισσότερα έρχονται σύντομα.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </div>
+
       <script>
+        // year
         document.getElementById("year").textContent = new Date().getFullYear();
+
+        // EN/GR tabs
+        const btns = document.querySelectorAll(".lang-tabs__btn");
+        const panels = document.querySelectorAll(".lang-panel");
+
+        btns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const lang = btn.dataset.lang;
+
+            btns.forEach(b => {
+              const active = b === btn;
+              b.classList.toggle("is-active", active);
+              b.setAttribute("aria-selected", active ? "true" : "false");
+            });
+
+            panels.forEach(p => {
+              const show = p.dataset.panel === lang;
+              p.hidden = !show;
+              p.classList.toggle("is-visible", show);
+            });
+          });
+        });
       </script>
+
+      <style>
+        /* ABOUT: logo left, text right (same “card” feeling) */
+        .about-block{
+          display: grid;
+          grid-template-columns: 140px 1fr;
+          gap: 28px;
+          align-items: start;
+          margin-top: 16px;
+        }
+        .about-block__logo img{
+          width: 120px;
+          height: 120px;
+          display: block;
+          object-fit: contain;
+          opacity: .95;
+        }
+        .about-block__content{
+          max-width: 72ch;
+        }
+        .about-lead{
+          font-size: 1.05rem;
+          line-height: 1.5;
+          margin: 0 0 12px 0;
+        }
+        .lang-panel p{
+          margin: 0 0 12px 0;
+          opacity: .92;
+        }
+
+        /* Tabs (EN/GR) – subtle & clean */
+        .lang-tabs{
+          display: inline-flex;
+          gap: 8px;
+          padding: 6px;
+          border-radius: 999px;
+          background: rgba(255,255,255,.06);
+          border: 1px solid rgba(255,255,255,.10);
+          margin-bottom: 16px;
+        }
+        .lang-tabs__btn{
+          border: 0;
+          background: transparent;
+          color: inherit;
+          padding: 8px 12px;
+          border-radius: 999px;
+          font-weight: 700;
+          letter-spacing: .10em;
+          font-size: .72rem;
+          opacity: .75;
+          cursor: pointer;
+        }
+        .lang-tabs__btn.is-active{
+          background: rgba(255,255,255,.10);
+          opacity: 1;
+        }
+
+        @media (max-width: 720px){
+          .about-block{
+            grid-template-columns: 1fr;
+          }
+          .about-block__logo img{
+            width: 90px;
+            height: 90px;
+          }
+        }
+      </style>
+
     </main>
   </div>
 </body>
 </html>
-
-
-
-
-
-
