@@ -4,10 +4,39 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Odisseas Tsadekides</title>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon2.svg" />
-  <link rel="stylesheet" href="./styles.css" />
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
+  <link rel="stylesheet" href="/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- Masonry fix (cards don't stretch) -->
+  <style>
+    /* Masonry columns layout */
+    .grid{
+      columns: 2;
+      column-gap: 24px;
+    }
+    @media (max-width: 980px){
+      .grid{ columns: 1; }
+    }
+
+    /* Each card becomes a "block" inside columns (prevents row-stretch) */
+    .grid .card{
+      display: inline-block;
+      width: 100%;
+      margin: 0 0 24px;
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    /* Make image keep natural height */
+    .card__media img{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
@@ -15,18 +44,19 @@
 
     <aside class="sidebar">
       <div class="sidebar__top">
-        <div class="brand" onclick="location.href='./index.html'">
-  <img src="./assets/logo.svg" class="brand__logo" />
-  <span class="brand__name">Odisseas Tsantekides</span>
-</div>
-        
+
+        <a class="brand" href="/index.html" aria-label="Home">
+          <img src="/assets/logo.svg" class="brand__logo" alt="Logo" />
+          <span class="brand__name">Odisseas Tsantekides</span>
+        </a>
+
         <nav class="nav">
           <p class="nav__label">Projects</p>
           <ul class="nav__list">
-            <li><a href="./projects/project-1.html">Aris Kavalariou</a></li>
-            <li><a href="./projects/project-2.html">Domain Tsantekides</a></li>
-            <li><a href="./projects/project-3.html">Raw Frequencies</a></li>
-            <li><a href="./projects/project-4.html">Selected Small Works</a></li>
+            <li><a href="/projects/project-1.html">Aris Kavalariou</a></li>
+            <li><a href="/projects/project-2.html">Domain Tsantekides</a></li>
+            <li><a href="/projects/project-3.html">Raw Frequencies</a></li>
+            <li><a href="/projects/project-4.html">Selected Small Works</a></li>
           </ul>
         </nav>
 
@@ -43,8 +73,8 @@
 
         <nav class="nav nav--secondary">
           <ul class="nav__list nav__list--secondary">
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -61,9 +91,9 @@
       </header>
 
       <section class="grid" aria-label="Projects">
-        <a class="card" href="./projects/project-1.html">
+        <a class="card" href="/projects/project-1.html">
           <div class="card__media">
-            <img src="./assets/Logo-Teliko.png" alt="Project 01 cover" loading="lazy" />
+            <img src="/assets/Logo-Teliko.png" alt="Project 01 cover" loading="lazy" />
           </div>
           <div class="card__meta">
             <span class="card__title">Aris Kavalariou</span>
@@ -71,9 +101,9 @@
           </div>
         </a>
 
-        <a class="card" href="./projects/project-2.html">
+        <a class="card" href="/projects/project-2.html">
           <div class="card__media">
-            <img src="./assets/p2-cover.jpg" alt="Project 02 cover" loading="lazy" />
+            <img src="/assets/p2-cover.jpg" alt="Project 02 cover" loading="lazy" />
           </div>
           <div class="card__meta">
             <span class="card__title">Domain Tsantekides</span>
@@ -81,9 +111,9 @@
           </div>
         </a>
 
-        <a class="card" href="./projects/project-3.html">
+        <a class="card" href="/projects/project-3.html">
           <div class="card__media">
-            <img src="./assets/p1-cover.jpg" alt="Project 03 cover" loading="lazy" />
+            <img src="/assets/p1-cover.jpg" alt="Project 03 cover" loading="lazy" />
           </div>
           <div class="card__meta">
             <span class="card__title">Raw Frequencies</span>
@@ -91,23 +121,22 @@
           </div>
         </a>
 
-        <a class="card" href="./projects/project-4.html">
+        <a class="card" href="/projects/project-4.html">
           <div class="card__media">
-            <img src="./assets/p2-cover.jpg" alt="Project 04 cover" loading="lazy" />
+            <img src="/assets/p2-cover.jpg" alt="Project 04 cover" loading="lazy" />
           </div>
           <div class="card__meta">
             <span class="card__title">Selected Small Works</span>
             <span class="card__tags">Micro • Brand</span>
           </div>
         </a>
+      </section>
 
+    </main>
+  </div>
 
-
-
-
-
-
-
-
-
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
