@@ -503,6 +503,46 @@ a:hover{opacity:.92}
   }
 }
 
+/* Hero rotating logo (Option C) */
+.hero-logo{
+  max-width: var(--max);
+  margin: 0 auto 18px auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 10px 0 6px;
+}
+
+.hero-logo__img{
+  width: min(220px, 70vw);
+  height: auto;
+  display:block;
+
+  /* "3D" feel */
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  filter: drop-shadow(0 18px 35px rgba(0,0,0,.55));
+
+  /* animation */
+  animation: spin360 2.6s linear infinite;
+}
+
+/* Pause on hover (desktop) */
+.hero-logo__img:hover{
+  animation-play-state: paused;
+}
+
+/* Reduce motion accessibility */
+@media (prefers-reduced-motion: reduce){
+  .hero-logo__img{ animation: none; }
+}
+
+/* 360 spin with a little tilt so it feels 3D */
+@keyframes spin360{
+  0%   { transform: perspective(900px) rotateX(14deg) rotateY(0deg); }
+  100% { transform: perspective(900px) rotateX(14deg) rotateY(360deg); }
+}
+
 
 
 
