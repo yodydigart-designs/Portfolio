@@ -149,8 +149,60 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+<script>
+  // year
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // mobile menu
+  const sidebar = document.getElementById("sidebar");
+  const menuBtn = document.getElementById("menuBtn");
+  const overlay = document.getElementById("overlay");
+
+  function openMenu(){
+    sidebar.classList.add("is-open");
+    overlay.classList.add("is-show");
+    document.body.classList.add("no-scroll");
+    menuBtn.setAttribute("aria-expanded", "true");
+    overlay.setAttribute("aria-hidden", "false");
+  }
+
+  function closeMenu(){
+    sidebar.classList.remove("is-open");
+    overlay.classList.remove("is-show");
+    document.body.classList.remove("no-scroll");
+    menuBtn.setAttribute("aria-expanded", "false");
+    overlay.setAttribute("aria-hidden", "true");
+  }
+
+  if(menuBtn && sidebar && overlay){
+    menuBtn.addEventListener("click", () => {
+      const isOpen = sidebar.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener("click", closeMenu);
+
+    // close on ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+
+    // close after clicking a link inside sidebar (mobile UX)
+    sidebar.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 820px)").matches) closeMenu();
+      });
+    });
+  }
+</script>
+
+
+  
 </body>
 </html>
+
 
 
 
