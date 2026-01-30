@@ -370,3 +370,90 @@ a:hover{opacity:.92}
   .content{padding:20px 16px}
   .grid{columns:1}
 }
+
+/* Mobile menu (off-canvas) */
+.mbar{
+  display:none;
+}
+
+.overlay{
+  display:none;
+}
+
+/* Mobile only */
+@media (max-width: 820px){
+
+  /* show top bar */
+  .mbar{
+    display:flex;
+    position:sticky;
+    top:0;
+    z-index:9999;
+    padding:12px 12px;
+    border-bottom:1px solid var(--line);
+    background: rgba(11,11,15,.85);
+    backdrop-filter: blur(10px);
+  }
+
+  .mbar__btn{
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.14);
+    background: rgba(255,255,255,.06);
+    color: var(--text);
+    font-weight:800;
+    letter-spacing:-.02em;
+    cursor:pointer;
+  }
+
+  /* sidebar becomes drawer */
+  .sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100vh;
+    width:min(86vw, 320px);
+    z-index:10000;
+    transform: translateX(-110%);
+    transition: transform .22s ease;
+    border-right:1px solid var(--line);
+  }
+
+  /* open state */
+  .sidebar.is-open{
+    transform: translateX(0);
+  }
+
+  /* overlay */
+  .overlay{
+    display:block;
+    position:fixed;
+    inset:0;
+    background: rgba(0,0,0,.55);
+    z-index:9998;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity .2s ease;
+  }
+
+  .overlay.is-show{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  /* layout should not force column now */
+  .layout{
+    flex-direction:column;
+  }
+
+  /* keep content normal */
+  .content{
+    padding:16px 16px 24px;
+  }
+
+  /* prevent body scroll when menu open */
+  body.no-scroll{
+    overflow:hidden;
+  }
+}
+
