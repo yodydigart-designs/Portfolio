@@ -615,6 +615,179 @@ a:hover{opacity:.92}
   }
 }
 
+/* ===== Gallery: Playlist buttons + Spotify player ===== */
+
+/* Desktop floating Playlist button (only desktop) */
+.pl-btn{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 10002;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.82);
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  box-shadow: 0 14px 40px rgba(0,0,0,.55);
+}
+
+/* Spotify player (shared) */
+.sp-player{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 10003;
+  display: none;
+  width: 360px;
+}
+.sp-player.is-open{ display:block; }
+
+.sp-close{
+  position:absolute;
+  top: -10px;
+  right: -10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(0,0,0,.92);
+  color: var(--text);
+  cursor:pointer;
+}
+
+/* Mobile top bar: playlist inside */
+.mbar{
+  display:none; /* default hidden; shown on mobile by your existing CSS */
+}
+.mbar__playlist{
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  cursor: pointer;
+}
+
+/* Mobile behavior */
+@media (max-width: 820px){
+  /* show mbar (if your existing CSS already shows it, this is safe) */
+  .mbar{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+  }
+
+  /* hide desktop floating button on mobile */
+  .pl-btn{ display:none; }
+
+  /* player becomes full width */
+  .sp-player{
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+  }
+  .sp-player iframe{ width:100%; }
+}
+
+/* ===== Gallery: Flipbook styling (base) ===== */
+.flip-hud{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  max-width: var(--max);
+  margin: 0 auto 14px auto;
+}
+
+.flip-btn{
+  padding:10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.flip-status{
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+
+.flip-wrap{
+  max-width: var(--max);
+  margin: 0 auto;
+  display:flex;
+  justify-content:center;
+}
+
+.flip-book{
+  width: min(980px, 100%);
+  height: min(78vh, 780px);
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.02);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* Page look (underground magazine base) */
+.page{ background:#0e0f14; color:#e9e9f2; }
+.page__inner{
+  height: 100%;
+  padding: 22px;
+  display:flex;
+  flex-direction:column;
+  gap: 12px;
+  position: relative;
+}
+.page--cover{
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(255,255,255,.08), transparent 55%),
+              radial-gradient(1000px 600px at 80% 100%, rgba(255,255,255,.06), transparent 55%),
+              #0b0b0f;
+}
+.page__corner{
+  position:absolute;
+  top: 14px;
+  left: 16px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  color: rgba(255,255,255,.45);
+  text-transform: uppercase;
+}
+.page__center{
+  margin: auto 0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap: 10px;
+}
+.page__logo img{ width:34px; height:34px; display:block; opacity:.95; }
+.page__title{ margin:0; font-size:32px; letter-spacing:-.02em; font-weight:800; }
+.page__sub{ margin:0; color: rgba(255,255,255,.62); max-width:48ch; line-height:1.5; }
+.page__h{
+  margin:0;
+  font-size: 14px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.65);
+}
+.page__blank{
+  flex:1;
+  border-radius: 16px;
+  border: 1px dashed rgba(255,255,255,.14);
+  background: rgba(255,255,255,.03);
+}
+.page__footer{ margin-top:auto; font-size:12px; color: rgba(255,255,255,.45); }
+
 
 
 
