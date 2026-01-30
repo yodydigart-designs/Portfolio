@@ -99,19 +99,19 @@
     <main class="content">
 
       <!-- Mobile top bar -->
-      <div class="mbar" aria-label="Mobile header">
-        <button class="mbar__btn" id="menuBtn" aria-controls="sidebar" aria-expanded="false">
-          ☰ Menu
-        </button>
-      </div>
+      <!-- Mobile top bar -->
+<div class="mbar" aria-label="Mobile header">
+  <button class="mbar__btn" id="menuBtn" aria-controls="sidebar" aria-expanded="false">
+    ☰ Menu
+  </button>
+
+  <button class="mbar__playlist" id="playlistBtn">
+    ▶ Playlist
+  </button>
+</div>
 
       <!-- Mobile overlay -->
       <div class="overlay" id="overlay" aria-hidden="true"></div>
-
-      <!-- Sticky playlist button (top-right) -->
-      <button class="pl-btn" id="plBtn" type="button" aria-controls="spPlayer" aria-expanded="false">
-        ▶ Playlist
-      </button>
 
       <!-- Spotify player container (hidden until you click) -->
       <div class="sp-player" id="spPlayer" aria-hidden="true">
