@@ -586,6 +586,35 @@ a:hover{opacity:.92}
   .mbar__playlist { margin-right: 4px; }
 }
 
+#playlistFrame {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 320px;
+  height: 152px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px rgba(0,0,0,.5);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: .25s ease;
+  z-index: 20000;
+}
+
+#playlistFrame.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+@media (max-width: 820px){
+  #playlistFrame {
+    bottom: 80px;
+    right: 12px;
+    width: calc(100% - 24px);
+  }
+}
+
 
 
 
