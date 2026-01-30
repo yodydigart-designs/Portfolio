@@ -103,17 +103,149 @@
       <section class="flip-wrap" aria-label="Magazine gallery">
         <div class="flip-book" id="flipBook">
 
-          <div class="page page--cover" data-density="hard">
-            <div class="page__inner">
-              <div class="page__corner">YODYDIGART.WORK</div>
-              <div class="page__center">
-                <div class="page__logo"><img src="/assets/logo.svg" alt="Logo"></div>
-                <h1 class="page__title">GALLERY</h1>
-                <p class="page__sub">Flip through the work. Sound optional.</p>
-              </div>
-              <div class="page__footer">01</div>
-            </div>
-          </div>
+  <!-- PAGE 1 — COVER (you will design) -->
+  <div class="page page--cover" data-density="hard">
+    <div class="page__inner page__inner--cover">
+      <div class="page__corner">YODYDIGART.WORK</div>
+
+      <div class="page__center">
+        <div class="page__logo">
+          <img src="/assets/logo.svg" alt="Logo">
+        </div>
+        <h1 class="page__title">GALLERY</h1>
+        <p class="page__sub">Flip through the work. Sound optional.</p>
+        <!-- όταν φτιάξεις εξώφυλλο, απλά αντικαθιστάς αυτό το section με εικόνα -->
+      </div>
+
+      <div class="page__footer">01</div>
+    </div>
+  </div>
+
+  <!-- PROJECT 1 — MAIN (PAGE 2) -->
+  <div class="page">
+    <div class="page__inner">
+      <div class="page__top">
+        <div class="page__kicker">Project 01</div>
+        <div class="page__name">Aris Kavalariou</div>
+      </div>
+
+      <!-- ΒΑΛΕ ΕΔΩ την 1η/βασική εικόνα του Project 1 -->
+      <figure class="mag-hero">
+        <img src="/assets/Logo-Teliko.png" alt="Project 01 main">
+      </figure>
+
+      <div class="page__footer">02</div>
+    </div>
+  </div>
+
+  <!-- PROJECT 1 — REST (PAGE 3) -->
+  <div class="page">
+    <div class="page__inner">
+      <div class="page__top">
+        <div class="page__kicker">Project 01</div>
+        <div class="page__name">Aris Kavalariou — Details</div>
+      </div>
+
+      <!-- ΒΑΛΕ ΕΔΩ τις υπόλοιπες εικόνες του Project 1 -->
+      <div class="mag-grid">
+        <img src="/assets/p1-extra-1.jpg" alt="Project 01 image 2">
+        <img src="/assets/p1-extra-2.jpg" alt="Project 01 image 3">
+        <!-- πρόσθεσε/βγάλε όσα θες -->
+      </div>
+
+      <div class="page__footer">03</div>
+    </div>
+  </div>
+
+  <!-- PROJECT 2 — MAIN (PAGE 4) -->
+  <div class="page">
+    <div class="page__inner">
+      <div class="page__top">
+        <div class="page__kicker">Project 02</div>
+        <div class="page__name">Domain Tsantekides</div>
+      </div>
+
+      <!-- ΒΑΛΕ ΕΔΩ τη βασική εικόνα του Project 2 -->
+      <figure class="mag-hero">
+        <img src="/assets/domain_tsantekides_logo.png" alt="Project 02 main">
+      </figure>
+
+      <div class="page__footer">04</div>
+    </div>
+  </div>
+
+  <!-- PROJECT 2 — REST (PAGE 5) -->
+  <div class="page">
+    <div class="page__inner">
+      <div class="page__top">
+        <div class="page__kicker">Project 02</div>
+        <div class="page__name">Domain Tsantekides — Details</div>
+      </div>
+
+      <!-- ΒΑΛΕ ΕΔΩ τις υπόλοιπες εικόνες του Project 2 -->
+      <div class="mag-grid">
+        <img src="/assets/krasi_kokkino.jpg" alt="Project 02 image">
+        <img src="/assets/krasi_aspro.jpg" alt="Project 02 image">
+        <img src="/assets/tsipouro_xg.jpg" alt="Project 02 image">
+        <img src="/assets/wine_bottle_mockup.jpg" alt="Project 02 image">
+        <img src="/assets/cardboard_package_krasi.jpg" alt="Project 02 image">
+        <img src="/assets/mpoukali_1.png" alt="Project 02 image">
+        <img src="/assets/mpoukali_2.png" alt="Project 02 image">
+        <img src="/assets/mpoukali_3.png" alt="Project 02 image">
+      </div>
+
+      <div class="page__footer">05</div>
+    </div>
+  </div>
+
+  <!-- PROJECT 3 — MAIN (PAGE 6) -->
+  <div class="page">
+    <div class="page__inner">
+      <div class="page__top">
+        <div class="page__kicker">Project 03</div>
+        <div class="page__name">Raw Frequencies</div>
+      </div>
+
+      <!-- ΒΑΛΕ ΕΔΩ τη βασική εικόνα του Project 3 -->
+      <figure class="mag-hero">
+        <img src="/assets/vinyl_wholeimg.jpg" alt="Project 03 main">
+      </figure>
+
+      <div class="page__footer">06</div>
+    </div>
+  </div>
+
+  <!-- PROJECT 3 — REST (PAGE 7) -->
+  <div class="page">
+    <div class="page__inner">
+      <div class="page__top">
+        <div class="page__kicker">Project 03</div>
+        <div class="page__name">Raw Frequencies — Details</div>
+      </div>
+
+      <div class="mag-grid">
+        <img src="/assets/p3-extra-1.jpg" alt="Project 03 image 2">
+        <img src="/assets/p3-extra-2.jpg" alt="Project 03 image 3">
+        <img src="/assets/p3-extra-3.png" alt="Project 03 image 4">
+      </div>
+
+      <div class="page__footer">07</div>
+    </div>
+  </div>
+
+  <!-- BACK COVER (LAST) -->
+  <div class="page page--cover" data-density="hard">
+    <div class="page__inner page__inner--cover">
+      <div class="page__center">
+        <h2 class="page__title" style="font-size:22px;">End</h2>
+        <p class="page__sub">Back to projects anytime.</p>
+      </div>
+      <div class="page__footer">08</div>
+    </div>
+  </div>
+
+</div>
+
 
           <div class="page">
             <div class="page__inner">
