@@ -7,6 +7,29 @@
 
   <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
   <link rel="stylesheet" href="/styles.css">
+
+  <!-- Page-only layout helpers -->
+  <style>
+    .pgrid{
+      display:grid;
+      gap:14px;
+      margin-top:12px;
+    }
+    .pgrid--2{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .pimg{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+
+    @media (max-width: 900px){
+      .pgrid--2{ grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 
 <body>
@@ -66,13 +89,21 @@
           <a class="back-btn" href="/index.html">← Back</a>
         </div>
 
-        <div class="proj-hero">
-          <img src="/assets/p1-cover.jpg" alt="">
+        <!-- Box-window #1 -->
+        <div class="proj-card">
+          <!-- TOP: 3rd photo -->
+          <img class="pimg" src="/assets/vinyl_wholeing.jpg" alt="Vinyl wholeing">
+
+          <!-- BELOW (same box): 2nd + last side-by-side -->
+          <div class="pgrid pgrid--2">
+            <img class="pimg" src="/assets/vinyl_only.jpg" alt="Vinyl only">
+            <img class="pimg" src="/assets/vinyl-cover-concept.jpg" alt="Vinyl cover concept">
+          </div>
         </div>
 
+        <!-- Box-window #2 (PNG alone) -->
         <div class="proj-card">
-          <h2>Gallery</h2>
-          <img src="/assets/p1-cover.jpg" style="width:100%; border-radius:16px; margin-top:12px;" alt="">
+          <img class="pimg" src="/assets/Portraits_Illustration.png" alt="Portraits Illustration">
         </div>
 
       </div>
@@ -85,7 +116,3 @@
   </script>
 </body>
 </html>
-
-
-
-
