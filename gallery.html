@@ -144,85 +144,98 @@
   </div>
 
   <script>
-    // Year
-    const yearEl = document.getElementById("year");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  // Year
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // Mobile menu
-    const sidebar = document.getElementById("sidebar");
-    const menuBtn = document.getElementById("menuBtn");
-    const overlay = document.getElementById("overlay");
+  // Mobile menu
+  const sidebar = document.getElementById("sidebar");
+  const menuBtn = document.getElementById("menuBtn");
+  const overlay = document.getElementById("overlay");
 
-    function openMenu(){
-      sidebar.classList.add("is-open");
-      overlay.classList.add("is-show");
-      document.body.classList.add("no-scroll");
-      menuBtn.setAttribute("aria-expanded", "true");
-      overlay.setAttribute("aria-hidden", "false");
-    }
+  function openMenu(){
+    sidebar.classList.add("is-open");
+    overlay.classList.add("is-show");
+    document.body.classList.add("no-scroll");
+    menuBtn.setAttribute("aria-expanded", "true");
+    overlay.setAttribute("aria-hidden", "false");
+  }
 
-    function closeMenu(){
-      sidebar.classList.remove("is-open");
-      overlay.classList.remove("is-show");
-      document.body.classList.remove("no-scroll");
-      menuBtn.setAttribute("aria-expanded", "false");
-      overlay.setAttribute("aria-hidden", "true");
-    }
+  function closeMenu(){
+    sidebar.classList.remove("is-open");
+    overlay.classList.remove("is-show");
+    document.body.classList.remove("no-scroll");
+    menuBtn.setAttribute("aria-expanded", "false");
+    overlay.setAttribute("aria-hidden", "true");
+  }
 
-    if(menuBtn && sidebar && overlay){
-      menuBtn.addEventListener("click", () => {
-        const isOpen = sidebar.classList.contains("is-open");
-        isOpen ? closeMenu() : openMenu();
+  if(menuBtn && sidebar && overlay){
+    menuBtn.addEventListener("click", () => {
+      const isOpen = sidebar.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener("click", closeMenu);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+
+    sidebar.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        if (window.matchMedia("(max-width: 820px)").matches) closeMenu();
       });
+    });
+  }
 
-      overlay.addEventListener("click", closeMenu);
+  // Playlist UI (Spotify) — TOGGLE + remembers state
+  const plBtn = document.getElementById("plBtn");
+  const spPlayer = document.getElementById("spPlayer");
+  const closePlayer = document.getElementById("closePlayer");
+  const spIframe = document.getElementById("spIframe");
 
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeMenu();
-      });
+  const SPOTIFY_EMBED_URL =
+    "https://open.spotify.com/embed/playlist/2pAFH6oJbozv45DoYLXyhB?utm_source=generator";
 
-      sidebar.querySelectorAll("a").forEach(a => {
-        a.addEventListener("click", () => {
-          if (window.matchMedia("(max-width: 820px)").matches) closeMenu();
-        });
-      });
+  function ensureIframeLoaded(){
+    if (spIframe && !spIframe.getAttribute("src")) {
+      spIframe.setAttribute("src", SPOTIFY_EMBED_URL);
     }
+  }
 
-    // Playlist UI (Spotify)
-    const plBtn = document.getElementById("plBtn");
-    const spPlayer = document.getElementById("spPlayer");
-    const closePlayer = document.getElementById("closePlayer");
-    const spIframe = document.getElementById("spIframe");
+  function openPlayer(){
+    ensureIframeLoaded();
+    spPlayer.classList.add("is-open");
+    spPlayer.setAttribute("aria-hidden", "false");
+    plBtn.setAttribute("aria-expanded", "true");
+    plBtn.textContent = "✕ Playlist";
+    localStorage.setItem("playerOpen", "1");
+  }
 
-    // When you send the playlist, we will set this to the embed URL
-    const SPOTIFY_EMBED_URL = ""; // <-- paste later
+  function closePlayerFn(){
+    spPlayer.classList.remove("is-open");
+    spPlayer.setAttribute("aria-hidden", "true");
+    plBtn.setAttribute("aria-expanded", "false");
+    plBtn.textContent = "▶ Playlist";
+    localStorage.setItem("playerOpen", "0");
+  }
 
-    function openPlayer(){
-      if (SPOTIFY_EMBED_URL && spIframe && !spIframe.src) spIframe.src = SPOTIFY_EMBED_URL;
+  function togglePlayer(){
+    const isOpen = spPlayer.classList.contains("is-open");
+    isOpen ? closePlayerFn() : openPlayer();
+  }
 
-      spPlayer.classList.add("is-open");
-      spPlayer.setAttribute("aria-hidden", "false");
-      plBtn.setAttribute("aria-expanded", "true");
-      localStorage.setItem("playerOpen", "1");
+  if (plBtn && spPlayer && closePlayer){
+    plBtn.addEventListener("click", togglePlayer);
+    closePlayer.addEventListener("click", closePlayerFn);
+
+    // restore state
+    if (localStorage.getItem("playerOpen") === "1"){
+      openPlayer();
     }
+  }
+</script>
 
-    function closePlayerFn(){
-      spPlayer.classList.remove("is-open");
-      spPlayer.setAttribute("aria-hidden", "true");
-      plBtn.setAttribute("aria-expanded", "false");
-      localStorage.setItem("playerOpen", "0");
-    }
-
-    if (plBtn && spPlayer && closePlayer){
-      plBtn.addEventListener("click", openPlayer);
-      closePlayer.addEventListener("click", closePlayerFn);
-
-      // restore state
-      if (localStorage.getItem("playerOpen") === "1"){
-        openPlayer();
-      }
-    }
-  </script>
 
   <!-- Small page-specific styles for playlist button/player -->
   <style>
