@@ -514,9 +514,17 @@ a:hover{opacity:.92}
 }
 
 .hero-logo__img{
-  width: min(220px, 70vw);
+  width: min(200px, 60vw);
   height: auto;
   display:block;
+
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  filter: drop-shadow(0 18px 35px rgba(0,0,0,.55));
+
+  animation: spin360 2.6s linear infinite;
+}
+
 
   /* "3D" feel */
   transform-style: preserve-3d;
@@ -541,6 +549,12 @@ a:hover{opacity:.92}
 @keyframes spin360{
   0%   { transform: perspective(900px) rotateX(14deg) rotateY(0deg); }
   100% { transform: perspective(900px) rotateX(14deg) rotateY(360deg); }
+}
+
+@media (max-width: 820px){
+  .hero-logo__img{
+    width: 140px;     /* μικρότερο στο κινητό */
+  }
 }
 
 
