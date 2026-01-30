@@ -234,6 +234,18 @@
       openPlayer();
     }
   }
+
+    // --- PLAYLIST TOGGLE ---
+const playlistBtn = document.getElementById("playlistBtn");
+const playlistFrame = document.getElementById("playlistFrame");
+
+if (playlistBtn && playlistFrame){
+  playlistBtn.addEventListener("click", () => {
+    playlistFrame.classList.toggle("show");
+  });
+}
+
+    
 </script>
 
 
