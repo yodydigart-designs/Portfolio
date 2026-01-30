@@ -419,3 +419,15 @@ a:hover{opacity:.92}
     overflow:hidden;
   }
 }
+
+/* FORCE: hide mobile menu on desktop */
+@media (min-width: 821px){
+  .mbar{ display:none !important; }
+  .overlay{ display:none !important; }
+  .sidebar{
+    transform:none !important;
+    position:sticky !important;
+  }
+}
+
+
