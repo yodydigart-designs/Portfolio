@@ -7,6 +7,52 @@
 
   <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
   <link rel="stylesheet" href="/styles.css">
+
+  <!-- Page-only layout helpers (safe, no changes to your main css) -->
+  <style>
+    .pgrid{
+      display:grid;
+      gap:14px;
+      margin-top:12px;
+    }
+    .pgrid--3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (max-width: 900px){ .pgrid--3{ grid-template-columns: 1fr; } }
+
+    .pimg{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+
+    .logo-wrap{
+      display:flex;
+      justify-content:center;
+      padding:10px 0 2px;
+    }
+    .logo-img{
+      width:min(520px, 100%);
+      height:auto;
+      display:block;
+    }
+
+    .slideshow{
+      margin-top:12px;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .slideshow img{
+      width:100%;
+      height:auto;
+      display:block;
+      opacity:1;
+      transition: opacity .25s ease;
+    }
+  </style>
 </head>
 
 <body>
@@ -54,6 +100,7 @@
       </div>
     </aside>
 
+    <!-- CONTENT -->
     <main class="content">
       <div class="proj-wrap">
 
@@ -65,39 +112,73 @@
           <a class="back-btn" href="/index.html">← Back</a>
         </div>
 
-        <div class="proj-hero">
-          <img src="/assets/p2-cover.jpg" alt="">
-        </div>
-
-        <div class="proj-body">
-
-          <!-- <div class="proj-card">
-            <h2>Overview</h2>
-            <p>Experimental typography design for the NoShame brand concept.</p>
+        <div class="proj-card">
+          <!-- 1) Logo (PNG) on top -->
+          <div class="logo-wrap">
+            <img class="logo-img" src="/assets/domain_tsantekides_logo.png" alt="Domain Tsantekides logo">
           </div>
 
-          <div class="proj-card">
-            <h2>Process</h2>
-            <p>Geometric cuts, sharp forms, dark/urban aesthetic, logo testing.</p>
-          </div> -->
-
-          <div class="proj-card">
-            <h2>Final Logo</h2>
-            <img src="/assets/p2-cover.jpg" style="width:100%; border-radius:16px; margin-top:12px;" alt="">
+          <!-- 2) Three labels on same row -->
+          <div class="pgrid pgrid--3">
+            <img class="pimg" src="/assets/Krasi_kokkino.jpg" alt="Krasi kokkino">
+            <img class="pimg" src="/assets/Krasi_Aspro.jpg" alt="Krasi aspro">
+            <img class="pimg" src="/assets/Tsipouro_xg.jpg" alt="Tsipouro xg">
           </div>
 
+          <!-- 3) Bottle mockup -->
+          <div style="margin-top:14px;">
+            <img class="pimg" src="/assets/wine_bottle_mockup.jpg" alt="Wine bottle mockup">
+          </div>
+
+          <!-- 4) Cardboard package below -->
+          <div style="margin-top:14px;">
+            <img class="pimg" src="/assets/cardboard_package_krasi.jpg" alt="Cardboard package krasi">
+          </div>
+
+          <!-- 5) Slideshow: mpoukali_... every 1s -->
+          <div style="margin-top:14px;">
+            <div class="slideshow">
+              <img id="bottleSlide" src="/assets/mpoukali_kokkino.png" alt="Bottle slideshow">
+            </div>
+
+            <!-- preload (hidden) -->
+            <div style="display:none;">
+              <img src="/assets/mpoukali_kokkino.png" alt="">
+              <img src="/assets/mpoukali_roze.png" alt="">
+              <img src="/assets/mpoukali_tsipouro.png" alt="">
+            </div>
+          </div>
         </div>
+
       </div>
     </main>
 
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear()
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Slideshow every 1s for mpoukali_...
+    (function(){
+      const slides = [
+        "/assets/mpoukali_kokkino.png",
+        "/assets/mpoukali_roze.png",
+        "/assets/mpoukali_tsipouro.png"
+      ];
+
+      const img = document.getElementById("bottleSlide");
+      if(!img) return;
+
+      let i = 0;
+      setInterval(() => {
+        img.style.opacity = "0";
+        setTimeout(() => {
+          i = (i + 1) % slides.length;
+          img.src = slides[i];
+          img.style.opacity = "1";
+        }, 220);
+      }, 1000);
+    })();
   </script>
 </body>
 </html>
-
-
-
-
