@@ -476,6 +476,35 @@ a:hover{opacity:.92}
   }
 }
 
+@media (max-width: 820px){
+
+  /* FULL BLACK drawer menu */
+  .sidebar{
+    background: #000000 !important;          /* απόλυτο μαύρο */
+    backdrop-filter: none !important;        /* χωρίς blur */
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+
+  /* Κείμενο πιο δυνατό */
+  .nav__list a,
+  .social__list a,
+  .nav__list--secondary a {
+    color: #ffffff !important;
+  }
+
+  /* Labels πιο έντονα */
+  .nav__label{
+    color: rgba(255,255,255,0.75) !important;
+  }
+
+  /* Overlay πιο σκοτεινό */
+  .overlay{
+    background: rgba(0,0,0,0.75) !important; /* βαθύ σκοτάδι */
+  }
+}
+
+
+
 
 
 
