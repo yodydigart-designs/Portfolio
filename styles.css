@@ -434,65 +434,33 @@ a:hover{opacity:.92}
   }
 }
 
-/* ===== HERO LOGO — 3D Y-AXIS ROTATION ===== */
-.hero-logo{
-  width: 160px;
-  margin: 0 auto 28px auto;
-  perspective: 1000px; /* enables real 3D depth */
-  opacity: 0;
-  animation: fadeInLogo 1s ease forwards;
-}
-
-.hero-logo img{
-  width: 100%;
-  height: auto;
-  display: block;
-  transform-style: preserve-3d;
-
-  /* The 3D rotation effect */
-  animation: logo3DTurn 6s ease-in-out infinite;
-}
-
-/* Fade in */
-@keyframes fadeInLogo {
-  to { opacity: 1; }
-}
-
-/* Smooth 3D rotation left-to-right */
-@keyframes logo3DTurn {
-  0%   { transform: rotateY(0deg); }
-  50%  { transform: rotateY(25deg); }  /* slight turn to the right */
-  100% { transform: rotateY(0deg); }   /* back to front */
-}
-
-/* MOBILE SIZE */
-@media (max-width: 820px) {
-  .hero-logo{
-    width: 120px;
-    margin-bottom: 20px;
-  }
-}
-
-/* ===== Animated logo (3D turn) ===== */
+/* ===== HERO LOGO (single source of truth) — 3D TURN + MOBILE SMALL ===== */
 .hero-logo{
   width: 160px;
   margin: 0 auto 18px auto;
   perspective: 1000px;
 }
+
 .hero-logo img{
   width: 100%;
   height: auto;
   display:block;
   transform-style: preserve-3d;
-  animation: logo3DTurn 6s ease-in-out infinite;
+  will-change: transform;
+  animation: logo3DTurn 6s ease-in-out infinite !important;
 }
+
 @keyframes logo3DTurn{
   0%{ transform: rotateY(0deg); }
   50%{ transform: rotateY(25deg); }
   100%{ transform: rotateY(0deg); }
 }
+
 @media (max-width: 820px){
-  .hero-logo{ width: 120px; margin-bottom: 14px; }
+  .hero-logo{
+    width: 88px;          /* ✅ μικρό στο κινητό */
+    margin: 10px auto 12px auto;
+  }
 }
 
 /* ===== Pinterest/Masonry ONLY on home ===== */
@@ -527,5 +495,3 @@ a:hover{opacity:.92}
   object-fit: contain;       /* logos won't crop */
   display: block;
 }
-
-
