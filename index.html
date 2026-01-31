@@ -5,21 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Odisseas Tsantekides</title>
 
-  <!-- Preview Image (optional) -->
-  <meta property="og:title" content="Odisseas Tsantekides – Portfolio" />
-  <meta property="og:description" content="Graphic Design • Branding • Web • Music Design" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yodydigart.work" />
-  <meta property="og:image" content="https://yodydigart.work/assets/preview-cover.jpg" />
-  <meta property="og:image:type" content="image/jpeg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Odisseas Tsantekides – Portfolio" />
-  <meta name="twitter:description" content="Graphic Design • Branding • Web • Music Design" />
-  <meta name="twitter:image" content="https://yodydigart.work/assets/preview-cover.jpg" />
-
   <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
   <link rel="stylesheet" href="/styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -73,14 +58,7 @@
 
     <main class="content">
 
-      <!-- Animated Logo -->
-<div class="hero-logo">
-  <img src="/assets/logo.svg" alt="Logo">
-</div>
-
-
-
-      <!-- Mobile top bar (ONLY shows on mobile via CSS) -->
+      <!-- Mobile top bar -->
       <div class="mbar" aria-label="Mobile header">
         <button class="mbar__btn" id="menuBtn" aria-controls="sidebar" aria-expanded="false">
           ☰ Menu
@@ -90,14 +68,20 @@
       <!-- Mobile overlay -->
       <div class="overlay" id="overlay" aria-hidden="true"></div>
 
+      <!-- Animated logo (3D turn) -->
+      <div class="hero-logo">
+        <img src="/assets/logo.svg" alt="Logo">
+      </div>
+
       <header class="page-head">
         <h1>Selected Work</h1>
-        <p>Branding / Graphic / UI — dark, clean, straight to the point.</p>
+        <p></p>
       </header>
 
-      <section class="grid" aria-label="Projects">
+      <!-- ✅ Pinterest Masonry ONLY here -->
+      <section class="grid grid--masonry" aria-label="Projects">
         <a class="card" href="/projects/project-1.html">
-          <div class="card__media">
+          <div class="card__media card__media--natural">
             <img src="/assets/Logo-Teliko.png" alt="Aris Kavalariou cover" loading="lazy" />
           </div>
           <div class="card__meta">
@@ -107,7 +91,7 @@
         </a>
 
         <a class="card" href="/projects/project-2.html">
-          <div class="card__media">
+          <div class="card__media card__media--natural">
             <img src="/assets/domain_tsantekides_logo.png" alt="Domain Tsantekides cover" loading="lazy" />
           </div>
           <div class="card__meta">
@@ -117,7 +101,7 @@
         </a>
 
         <a class="card" href="/projects/project-3.html">
-          <div class="card__media">
+          <div class="card__media card__media--natural">
             <img src="/assets/vinyl_wholeimg.jpg" alt="Raw Frequencies cover" loading="lazy" />
           </div>
           <div class="card__meta">
@@ -127,7 +111,7 @@
         </a>
 
         <a class="card" href="/projects/project-4.html">
-          <div class="card__media">
+          <div class="card__media card__media--natural">
             <img src="/assets/p2-cover.jpg" alt="Selected Small Works cover" loading="lazy" />
           </div>
           <div class="card__meta">
@@ -187,6 +171,3 @@
   </script>
 </body>
 </html>
-
-
-
