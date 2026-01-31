@@ -6,16 +6,18 @@
   <title>Gallery — Odisseas Tsantekides</title>
 
   <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
+  <!-- Global CSS (same for all pages) -->
   <link rel="stylesheet" href="/styles.css" />
+  <!-- Gallery-only CSS (does NOT affect other pages) -->
+  <link rel="stylesheet" href="/gallery.css" />
 
-  <!-- Optional: same font you used -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="layout">
 
-    <!-- SIDEBAR -->
+    <!-- SIDEBAR (same structure as other pages) -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__top">
 
@@ -62,245 +64,95 @@
     <!-- CONTENT -->
     <main class="content">
 
-      <!-- Mobile top bar -->
+      <!-- Mobile top bar (works with your existing menu JS pattern) -->
       <div class="mbar" aria-label="Mobile header">
         <button class="mbar__btn" id="menuBtn" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
-        <div class="mbar__title">Gallery</div>
       </div>
-
-      <!-- Overlay for sidebar -->
       <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-      <!-- Playlist Button (fixed top-right, all devices) -->
-      <button class="plbtn" id="plBtn" aria-controls="plPanel" aria-expanded="false" title="Open playlist">
-        ♫ Playlist
-      </button>
-
-      <!-- Spotify Panel -->
-      <div class="plpanel" id="plPanel" aria-hidden="true">
-        <div class="plpanel__top">
-          <div class="plpanel__title">Sound (optional)</div>
-          <button class="plpanel__close" id="plClose" aria-label="Close playlist">✕</button>
+      <!-- Top: animated logo (same 3D-style as home) -->
+      <div class="g-hero">
+        <div class="hero-logo hero-logo--gallery">
+          <img src="/assets/logo.svg" alt="Logo">
         </div>
 
-        <!-- YOUR embed -->
-        <iframe
-          data-testid="embed-iframe"
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/playlist/2pAFH6oJbozv45DoYLXyhB?utm_source=generator"
-          width="100%"
-          height="152"
-          frameborder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"></iframe>
+        <!-- Playlist button + dropdown panel under it -->
+        <div class="plwrap" aria-label="Playlist">
+          <button class="plbtn" id="plBtn" aria-expanded="false" aria-controls="plPanel">
+            ♫ Playlist
+          </button>
 
-        <p class="plpanel__note">
-          Tip: σε iPhone/Android συνήθως θέλει να πατήσεις Play μέσα στο Spotify panel (autoplay restrictions).
-        </p>
-      </div>
+          <div class="plpanel" id="plPanel" aria-hidden="true">
+            <iframe
+              data-testid="embed-iframe"
+              style="border-radius:12px"
+              src="https://open.spotify.com/embed/playlist/2pAFH6oJbozv45DoYLXyhB?utm_source=generator"
+              width="100%"
+              height="152"
+              frameborder="0"
+              allowfullscreen=""
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"></iframe>
 
-      <!-- BOOK HEADER -->
-      <header class="ghead">
-        <div class="ghead__kicker">YODYDIGART.WORK</div>
-        <h1 class="ghead__title">GALLERY</h1>
-        <p class="ghead__sub">Flip through the work. Sound optional.</p>
-      </header>
-
-      <!-- BOOK NAV -->
-      <div class="bookbar">
-        <button class="bbbtn" id="prevBtn">← Prev</button>
-        <div class="bbcount"><span id="pageNow">01</span> / <span id="pageTotal">08</span></div>
-        <button class="bbbtn" id="nextBtn">Next →</button>
-      </div>
-
-      <!-- BOOK -->
-      <section class="book" aria-label="Flipbook">
-        <div class="book__stage" id="bookStage">
-
-          <!-- PAGE 1: COVER -->
-          <article class="page is-active" data-page="1">
-            <div class="page__inner page__cover">
-              <div class="cover__top">
-                <div class="cover__tiny">YODYDIGART.WORK</div>
-              </div>
-              <div class="cover__mid">
-                <img class="cover__mark" src="/assets/logo.svg" alt="">
-                <div class="cover__title">GALLERY</div>
-                <div class="cover__sub">Flip through the work.</div>
-              </div>
-              <div class="cover__bot">
-                <div class="pnum">01</div>
-              </div>
+            <div class="plnote">
+              *On mobile you may need to press play inside the player (autoplay restrictions).
             </div>
-          </article>
-
-          <!-- PAGE 2: CONTENTS -->
-          <article class="page" data-page="2">
-            <div class="page__inner">
-              <div class="page__h">
-                <div class="page__eyebrow">Contents</div>
-                <div class="page__title">Selected projects</div>
-              </div>
-
-              <div class="toc">
-                <div class="toc__item"><span>Project 01</span><span>03</span></div>
-                <div class="toc__item"><span>Project 02</span><span>04–05</span></div>
-                <div class="toc__item"><span>Project 03</span><span>06–07</span></div>
-                <div class="toc__item"><span>End</span><span>08</span></div>
-              </div>
-
-              <div class="page__note">
-                Use <b>Next</b>/<b>Prev</b> or keyboard arrows. On mobile: swipe/scroll is normal, flip stays smooth.
-              </div>
-
-              <div class="pnum">02</div>
-            </div>
-          </article>
-
-          <!-- PAGE 3: PROJECT 1 (Aris) -->
-          <article class="page" data-page="3">
-            <div class="page__inner">
-              <div class="page__h">
-                <div class="page__eyebrow">Project 01</div>
-                <div class="page__title">Aris Kavalariou</div>
-              </div>
-
-              <div class="wbox">
-                <img class="wimg" src="/assets/Logo-Teliko.png" alt="Logo Teliko">
-              </div>
-
-              <div class="wgrid2">
-                <div class="wbox">
-                  <img class="wimg" src="/assets/final5.png" alt="final5">
-                </div>
-                <div class="wbox">
-                  <img class="wimg" src="/assets/Logo_NoFill_White.png" alt="Logo NoFill White">
-                </div>
-              </div>
-
-              <div class="pnum">03</div>
-            </div>
-          </article>
-
-          <!-- PAGE 4: PROJECT 2 (Domain Tsantekides) PART A -->
-          <article class="page" data-page="4">
-            <div class="page__inner">
-              <div class="page__h">
-                <div class="page__eyebrow">Project 02</div>
-                <div class="page__title">Domain Tsantekides</div>
-              </div>
-
-              <div class="wbox">
-                <img class="wimg" src="/assets/domain_tsantekides_logo.png" alt="Domain Tsantekides logo">
-              </div>
-
-              <div class="wgrid3">
-                <div class="wbox"><img class="wimg" src="/assets/Krasi_kokkino.jpg" alt="Krasi kokkino"></div>
-                <div class="wbox"><img class="wimg" src="/assets/Krasi_Aspro.jpg" alt="Krasi aspro"></div>
-                <div class="wbox"><img class="wimg" src="/assets/Tsipouro_xg.jpg" alt="Tsipouro xg"></div>
-              </div>
-
-              <div class="pnum">04</div>
-            </div>
-          </article>
-
-          <!-- PAGE 5: PROJECT 2 (Domain Tsantekides) PART B -->
-          <article class="page" data-page="5">
-            <div class="page__inner">
-              <div class="page__h">
-                <div class="page__eyebrow">Project 02</div>
-                <div class="page__title">Packaging / Bottles</div>
-              </div>
-
-              <div class="wbox">
-                <img class="wimg" src="/assets/wine_bottle_mockup.jpg" alt="wine bottle mockup">
-              </div>
-
-              <div class="wbox">
-                <img class="wimg" src="/assets/cardboard_package_krasi.jpg" alt="cardboard package">
-              </div>
-
-              <!-- Slideshow: mpoukali_* -->
-              <div class="wbox wbox--slideshow">
-                <div class="slideshow" id="bottleShow" aria-label="Bottle slideshow">
-                  <img class="wimg is-on" src="/assets/mpoukali_kokkino.png" alt="mpoukali kokkino">
-                  <img class="wimg" src="/assets/mpoukali_roze.png" alt="mpoukali roze">
-                  <img class="wimg" src="/assets/mpoukali_tsipouro.png" alt="mpoukali tsipouro">
-                </div>
-                <div class="slideshow__hint">bottles • 1s loop</div>
-              </div>
-
-              <div class="pnum">05</div>
-            </div>
-          </article>
-
-          <!-- PAGE 6: PROJECT 3 (Raw Frequencies) PART A -->
-          <article class="page" data-page="6">
-            <div class="page__inner">
-              <div class="page__h">
-                <div class="page__eyebrow">Project 03</div>
-                <div class="page__title">Raw Frequencies</div>
-              </div>
-
-              <!-- 3rd photo on top: vinyl_wholeimg -->
-              <div class="wbox">
-                <img class="wimg" src="/assets/vinyl_wholeimg.jpg" alt="vinyl wholeimg">
-              </div>
-
-              <!-- same box-window feeling: 2nd + last -->
-              <div class="wgrid2">
-                <div class="wbox">
-                  <img class="wimg" src="/assets/vinyl_only.jpg" alt="vinyl only">
-                </div>
-                <div class="wbox">
-                  <img class="wimg" src="/assets/vinyl-cover-concept.jpg" alt="vinyl cover concept">
-                </div>
-              </div>
-
-              <div class="pnum">06</div>
-            </div>
-          </article>
-
-          <!-- PAGE 7: PROJECT 3 (Raw Frequencies) PART B -->
-          <article class="page" data-page="7">
-            <div class="page__inner">
-              <div class="page__h">
-                <div class="page__eyebrow">Project 03</div>
-                <div class="page__title">Portraits / Illustration</div>
-              </div>
-
-              <!-- bottom different box-window: Portraits_Illustration.png -->
-              <div class="wbox">
-                <img class="wimg" src="/assets/Portraits_Illustration.png" alt="Portraits illustration">
-              </div>
-
-              <div class="pnum">07</div>
-            </div>
-          </article>
-
-          <!-- PAGE 8: END -->
-          <article class="page" data-page="8">
-            <div class="page__inner page__end">
-              <div class="end__title">End</div>
-              <div class="end__sub">Back to projects anytime.</div>
-              <a class="end__link" href="/index.html">← Home</a>
-              <div class="pnum">08</div>
-            </div>
-          </article>
-
+          </div>
         </div>
+      </div>
+
+      <!-- MAGAZINE (no images yet, just rectangles) -->
+      <section class="mag" aria-label="Magazine">
+        <header class="mag__head">
+          <h1 class="mag__title">Magazine</h1>
+          <p class="mag__sub">
+            Drag the right page to the left — like a real magazine. (We’ll add your designs later.)
+          </p>
+          <div class="mag__dims" id="magDims">Page size: —</div>
+        </header>
+
+        <div class="book" id="book" aria-label="Flipbook">
+          <div class="book__spine" aria-hidden="true"></div>
+
+          <!-- LEFT PAGE (static) -->
+          <div class="sheet sheet--left">
+            <div class="page page--placeholder">
+              <div class="page__label">LEFT PAGE</div>
+              <div class="page__hint">Placeholder (will be the back of the flipped page)</div>
+            </div>
+          </div>
+
+          <!-- RIGHT PAGE (flippable) -->
+          <div class="sheet sheet--right" id="flipSheet">
+            <div class="page page--front page--placeholder" id="frontPage">
+              <div class="page__label">COVER</div>
+              <div class="page__hint">Drag me left</div>
+            </div>
+
+            <div class="page page--back page--placeholder" id="backPage">
+              <div class="page__label">PAGE 2</div>
+              <div class="page__hint">Back side of cover</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simple controls (optional) -->
+        <div class="mag__controls">
+          <button class="magbtn" id="prevPageBtn">← Prev</button>
+          <button class="magbtn" id="nextPageBtn">Next →</button>
+        </div>
+
       </section>
 
     </main>
   </div>
 
   <script>
-    // year
+    // Year
     const yearEl = document.getElementById("year");
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // mobile sidebar toggle
+    // Mobile sidebar (same behavior as your index)
     const sidebar = document.getElementById("sidebar");
     const menuBtn = document.getElementById("menuBtn");
     const overlay = document.getElementById("overlay");
@@ -329,80 +181,109 @@
       }));
     }
 
-    // Playlist panel
+    // Playlist dropdown (under the button)
     const plBtn = document.getElementById("plBtn");
     const plPanel = document.getElementById("plPanel");
-    const plClose = document.getElementById("plClose");
 
-    function openPL(){
-      plPanel.classList.add("is-open");
-      plBtn.setAttribute("aria-expanded","true");
-      plPanel.setAttribute("aria-hidden","false");
-      localStorage.setItem("pl_open","1");
+    function togglePlaylist(){
+      const open = plPanel.classList.toggle("is-open");
+      plBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      plPanel.setAttribute("aria-hidden", open ? "false" : "true");
     }
-    function closePL(){
-      plPanel.classList.remove("is-open");
-      plBtn.setAttribute("aria-expanded","false");
-      plPanel.setAttribute("aria-hidden","true");
-      localStorage.setItem("pl_open","0");
+    plBtn?.addEventListener("click", togglePlaylist);
+
+    // Magazine: page size readout (for your designs)
+    function updateDims(){
+      const book = document.getElementById("book");
+      const dims = document.getElementById("magDims");
+      if (!book || !dims) return;
+
+      // book is a spread (2 pages). We show single page size:
+      const spreadW = book.clientWidth;
+      const spreadH = book.clientHeight;
+      const pageW = Math.round(spreadW / 2);
+      const pageH = Math.round(spreadH);
+
+      dims.textContent = `Page size on-screen: ${pageW}px × ${pageH}px (single page)`;
     }
+    window.addEventListener("resize", updateDims);
+    updateDims();
 
-    plBtn?.addEventListener("click", () => plPanel.classList.contains("is-open") ? closePL() : openPL());
-    plClose?.addEventListener("click", closePL);
+    // Magazine flip (drag right page to left)
+    const flipSheet = document.getElementById("flipSheet");
+    const bookEl = document.getElementById("book");
+    const front = document.getElementById("frontPage");
+    const back = document.getElementById("backPage");
 
-    // restore state
-    if (localStorage.getItem("pl_open") === "1") openPL();
+    let isDragging = false;
+    let startX = 0;
+    let progress = 0; // 0..1
+    let flipped = false;
 
-    // Bottle slideshow (1s)
-    const show = document.getElementById("bottleShow");
-    if (show) {
-      const imgs = Array.from(show.querySelectorAll("img"));
-      let i = 0;
-      setInterval(() => {
-        imgs[i].classList.remove("is-on");
-        i = (i + 1) % imgs.length;
-        imgs[i].classList.add("is-on");
-      }, 1000);
-    }
-
-    // Flipbook (simple magazine flip)
-    const pages = Array.from(document.querySelectorAll(".page"));
-    const total = pages.length;
-    let cur = 1;
-
-    const pageNow = document.getElementById("pageNow");
-    const pageTotal = document.getElementById("pageTotal");
-    if (pageTotal) pageTotal.textContent = String(total).padStart(2,"0");
-
-    function setActive(n, dir){
-      if (n < 1 || n > total) return;
-
-      pages.forEach(p => p.classList.remove("is-active","is-prev","is-next","is-turnL","is-turnR"));
-
-      const active = pages[n-1];
-      active.classList.add("is-active");
-
-      if (pages[n-2]) pages[n-2].classList.add("is-prev");
-      if (pages[n])   pages[n].classList.add("is-next");
-
-      // flip hint animation
-      if (dir === "next") active.classList.add("is-turnR");
-      if (dir === "prev") active.classList.add("is-turnL");
-
-      cur = n;
-      if (pageNow) pageNow.textContent = String(cur).padStart(2,"0");
+    function setRotation(p){
+      // rotateY from 0 to -180deg
+      const deg = -180 * p;
+      flipSheet.style.transform = `rotateY(${deg}deg)`;
+      flipSheet.style.transition = "none";
     }
 
-    document.getElementById("nextBtn")?.addEventListener("click", () => setActive(cur+1, "next"));
-    document.getElementById("prevBtn")?.addEventListener("click", () => setActive(cur-1, "prev"));
+    function snap(open){
+      // open = true => fully flipped (p=1)
+      const p = open ? 1 : 0;
+      flipSheet.style.transition = "transform .65s cubic-bezier(.2,.8,.2,1)";
+      flipSheet.style.transform = `rotateY(${-180 * p}deg)`;
+      progress = p;
+      flipped = open;
+      setTimeout(() => { flipSheet.style.transition = ""; }, 700);
+    }
 
-    // keyboard
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") setActive(cur+1, "next");
-      if (e.key === "ArrowLeft")  setActive(cur-1, "prev");
-    });
+    function onDown(e){
+      const rect = bookEl.getBoundingClientRect();
+      // allow drag only if pointer is on right side half (feels natural)
+      const x = (e.clientX ?? e.touches?.[0]?.clientX) - rect.left;
+      if (x < rect.width / 2) return;
 
-    setActive(1);
+      isDragging = true;
+      startX = (e.clientX ?? e.touches?.[0]?.clientX);
+      flipSheet.classList.add("is-dragging");
+    }
+
+    function onMove(e){
+      if (!isDragging) return;
+      const x = (e.clientX ?? e.touches?.[0]?.clientX);
+      const dx = startX - x; // drag left => positive
+      const w = bookEl.clientWidth / 2; // page width
+      const p = Math.min(1, Math.max(0, (flipped ? (1 - dx / w) : (dx / w))));
+      progress = p;
+      setRotation(p);
+    }
+
+    function onUp(){
+      if (!isDragging) return;
+      isDragging = false;
+      flipSheet.classList.remove("is-dragging");
+
+      // threshold
+      if (!flipped) {
+        snap(progress > 0.35);
+      } else {
+        // dragging back
+        snap(progress > 0.65);
+      }
+    }
+
+    // pointer + touch
+    bookEl.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+
+    bookEl.addEventListener("touchstart", (e) => onDown(e), {passive:true});
+    window.addEventListener("touchmove", (e) => onMove(e), {passive:true});
+    window.addEventListener("touchend", onUp);
+
+    // Buttons (optional)
+    document.getElementById("nextPageBtn")?.addEventListener("click", () => snap(true));
+    document.getElementById("prevPageBtn")?.addEventListener("click", () => snap(false));
   </script>
 </body>
 </html>
