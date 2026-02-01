@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Domain Tsantekides</title>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
+  <link rel="stylesheet" href="/styles.css">
+
+  <!-- Page-only layout helpers (safe, no changes to your main css) -->
+  <style>
+    .pgrid{
+      display:grid;
+      gap:14px;
+      margin-top:12px;
+    }
+    .pgrid--3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (max-width: 900px){ .pgrid--3{ grid-template-columns: 1fr; } }
+
+    .pimg{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+
+    .logo-wrap{
+      display:flex;
+      justify-content:center;
+      padding:10px 0 2px;
+    }
+    .logo-img{
+      width:min(520px, 100%);
+      height:auto;
+      display:block;
+    }
+
+    .slideshow{
+      margin-top:12px;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+    }
+    .slideshow img{
+      width:100%;
+      height:auto;
+      display:block;
+      opacity:1;
+      transition: opacity .25s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar__top">
+        <a class="brand" href="/index.html">
+          <img src="/assets/logo.svg" class="brand__logo" alt="Logo">
+          <span class="brand__name">Odisseas Tsantekides</span>
+        </a>
+
+        <nav class="nav">
+          <p class="nav__label">Projects</p>
+          <ul class="nav__list">
+            <li><a href="/projects/project-1.html">Aris Kavalariou</a></li>
+            <li><a href="/projects/project-2.html">Domain Tsantekides</a></li>
+            <li><a href="/projects/project-3.html">Raw Frequencies</a></li>
+            <li><a href="/projects/project-5.html">CGS Works</a></li>
+            <li><a href="/projects/project-4.html">Selected Small Works</a></li>
+          </ul>
+        </nav>
+
+        <div class="social">
+          <p class="nav__label">Social</p>
+          <ul class="social__list">
+            <li><a href="https://instagram.com/yody_digart" target="_blank" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://behance.net/odisseastsad24" target="_blank" rel="noreferrer">Behance</a></li>
+            <li><a href="https://www.linkedin.com/in/oditsad99" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar__spacer"></div>
+
+        <nav class="nav nav--secondary">
+          <ul class="nav__list nav__list--secondary">
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/gallery.html">Gallery</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sidebar__footer">
+        <small>© <span id="year"></span> Odisseas Tsantekides</small>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <div class="proj-wrap">
+
+        <div class="proj-top">
+          <div>
+            <div class="breadcrumb"><a href="/index.html">Home</a> / CGS Works</div>
+            <h1>Domain Tsantekides</h1>
+          </div>
+          <a class="back-btn" href="/index.html">← Back</a>
+        </div>
+
+        <div class="proj-card">
+          <!-- 1) Logo (PNG) on top -->
+          <div class="logo-wrap">
+            <img class="logo-img" src="/assets/domain_tsantekides_logo.png" alt="Domain Tsantekides logo">
+          </div>
+
+          <!-- 2) Three labels on same row -->
+          <div class="pgrid pgrid--3">
+            <img class="pimg" src="/assets/Krasi_kokkino.jpg" alt="Krasi kokkino">
+            <img class="pimg" src="/assets/Krasi_Aspro.jpg" alt="Krasi aspro">
+            <img class="pimg" src="/assets/Tsipouro_xg.jpg" alt="Tsipouro xg">
+          </div>
+
+          <!-- 3) Bottle mockup -->
+          <div style="margin-top:14px;">
+            <img class="pimg" src="/assets/wine_bottle_mockup.jpg" alt="Wine bottle mockup">
+          </div>
+
+          <!-- 4) Cardboard package below -->
+          <div style="margin-top:14px;">
+            <img class="pimg" src="/assets/cardboard_package_krasi.jpg" alt="Cardboard package krasi">
+          </div>
+
+          <!-- 5) Slideshow: mpoukali_... every 1s -->
+          <div style="margin-top:14px;">
+            <div class="slideshow">
+              <img id="bottleSlide" src="/assets/mpoukali_kokkino.png" alt="Bottle slideshow">
+            </div>
+
+            <!-- preload (hidden) -->
+            <div style="display:none;">
+              <img src="/assets/mpoukali_kokkino.png" alt="">
+              <img src="/assets/mpoukali_roze.png" alt="">
+              <img src="/assets/mpoukali_tsipouro.png" alt="">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Slideshow every 1s for mpoukali_...
+    (function(){
+      const slides = [
+        "/assets/mpoukali_kokkino.png",
+        "/assets/mpoukali_roze.png",
+        "/assets/mpoukali_tsipouro.png"
+      ];
+
+      const img = document.getElementById("bottleSlide");
+      if(!img) return;
+
+      let i = 0;
+      setInterval(() => {
+        img.style.opacity = "0";
+        setTimeout(() => {
+          i = (i + 1) % slides.length;
+          img.src = slides[i];
+          img.style.opacity = "1";
+        }, 220);
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
