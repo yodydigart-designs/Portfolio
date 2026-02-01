@@ -3,20 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domain Tsantekides</title>
+  <title>CGS Works</title>
 
   <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
   <link rel="stylesheet" href="/styles.css">
 
-  <!-- Page-only layout helpers (safe, no changes to your main css) -->
+  <!-- Page-only CSS (safe, doesn't affect other pages) -->
   <style>
-    .pgrid{
-      display:grid;
-      gap:14px;
-      margin-top:12px;
-    }
-    .pgrid--3{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    @media (max-width: 900px){ .pgrid--3{ grid-template-columns: 1fr; } }
+    .pwrap{ display:grid; gap:14px; }
 
     .pimg{
       width:100%;
@@ -27,30 +21,42 @@
       background: rgba(255,255,255,.02);
     }
 
-    .logo-wrap{
-      display:flex;
-      justify-content:center;
-      padding:10px 0 2px;
+    /* 2 images row */
+    .pgrid-2{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:14px;
     }
-    .logo-img{
-      width:min(520px, 100%);
-      height:auto;
-      display:block;
+    @media (max-width: 900px){
+      .pgrid-2{ grid-template-columns: 1fr; }
     }
 
-    .slideshow{
-      margin-top:12px;
+    /* LED strip row (6 tiles) */
+    .led-row{
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap:14px;
+      margin-top:2px;
+    }
+    @media (max-width: 980px){
+      .led-row{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px){
+      .led-row{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    .led-tile{
       border-radius:16px;
       overflow:hidden;
       border:1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.02);
     }
-    .slideshow img{
+    .led-tile img{
       width:100%;
       height:auto;
       display:block;
       opacity:1;
-      transition: opacity .25s ease;
+      transition: opacity .22s ease;
     }
   </style>
 </head>
@@ -71,7 +77,7 @@
           <ul class="nav__list">
             <li><a href="/projects/project-1.html">Aris Kavalariou</a></li>
             <li><a href="/projects/project-2.html">Domain Tsantekides</a></li>
-            <li><a href="/projects/project-5.html" class="active">CGS Works</a></li>
+            <li><a class="active" aria-current="page" href="/projects/project-5.html">CGS Works</a></li>
             <li><a href="/projects/project-3.html">Raw Frequencies</a></li>
             <li><a href="/projects/project-4.html">Selected Small Works</a></li>
           </ul>
@@ -115,40 +121,27 @@
         </div>
 
         <div class="proj-card">
-          <!-- 1) Logo (PNG) on top -->
-          <div class="logo-wrap">
-            <img class="logo-img" src="/assets/domain_tsantekides_logo.png" alt="Domain Tsantekides logo">
-          </div>
+          <div class="pwrap">
 
-          <!-- 2) Three labels on same row -->
-          <div class="pgrid pgrid--3">
-            <img class="pimg" src="/assets/Krasi_kokkino.jpg" alt="Krasi kokkino">
-            <img class="pimg" src="/assets/Krasi_Aspro.jpg" alt="Krasi aspro">
-            <img class="pimg" src="/assets/Tsipouro_xg.jpg" alt="Tsipouro xg">
-          </div>
+            <!-- 1) BIG IMAGE -->
+            <img class="pimg" src="/assets/pngLogoclear.png" alt="CGS Works main">
 
-          <!-- 3) Bottle mockup -->
-          <div style="margin-top:14px;">
-            <img class="pimg" src="/assets/wine_bottle_mockup.jpg" alt="Wine bottle mockup">
-          </div>
-
-          <!-- 4) Cardboard package below -->
-          <div style="margin-top:14px;">
-            <img class="pimg" src="/assets/cardboard_package_krasi.jpg" alt="Cardboard package krasi">
-          </div>
-
-          <!-- 5) Slideshow: mpoukali_... every 1s -->
-          <div style="margin-top:14px;">
-            <div class="slideshow">
-              <img id="bottleSlide" src="/assets/mpoukali_kokkino.png" alt="Bottle slideshow">
+            <!-- 2) TWO SIDE BY SIDE -->
+            <div class="pgrid-2">
+              <img class="pimg" src="/assets/pngLinedUpclear.png" alt="CGS Works lined up">
+              <img class="pimg" src="/assets/pngMascotclear.png" alt="CGS Works mascot">
             </div>
 
-            <!-- preload (hidden) -->
-            <div style="display:none;">
-              <img src="/assets/mpoukali_kokkino.png" alt="">
-              <img src="/assets/mpoukali_roze.png" alt="">
-              <img src="/assets/mpoukali_tsipouro.png" alt="">
+            <!-- 3) LED STRIP: 6 tiles, each cycles through the same 6 images but offset -->
+            <div class="led-row" aria-label="Color cycle strip">
+              <div class="led-tile"><img class="led" data-offset="0" src="/assets/Highlight_Blue.png" alt="Highlight cycle 1"></div>
+              <div class="led-tile"><img class="led" data-offset="1" src="/assets/Highlight_Green.png" alt="Highlight cycle 2"></div>
+              <div class="led-tile"><img class="led" data-offset="2" src="/assets/Highlight_Pink.png" alt="Highlight cycle 3"></div>
+              <div class="led-tile"><img class="led" data-offset="3" src="/assets/Highlight_Purple.png" alt="Highlight cycle 4"></div>
+              <div class="led-tile"><img class="led" data-offset="4" src="/assets/Highlight_Red.png" alt="Highlight cycle 5"></div>
+              <div class="led-tile"><img class="led" data-offset="5" src="/assets/Highlight_Yellow.png" alt="Highlight cycle 6"></div>
             </div>
+
           </div>
         </div>
 
@@ -158,27 +151,43 @@
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Year
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // Slideshow every 1s for mpoukali_...
+    // LED-style cycling (every 1s)
     (function(){
-      const slides = [
-        "/assets/mpoukali_kokkino.png",
-        "/assets/mpoukali_roze.png",
-        "/assets/mpoukali_tsipouro.png"
+      const frames = [
+        "/assets/Highlight_Blue.png",
+        "/assets/Highlight_Green.png",
+        "/assets/Highlight_Pink.png",
+        "/assets/Highlight_Purple.png",
+        "/assets/Highlight_Red.png",
+        "/assets/Highlight_Yellow.png"
       ];
 
-      const img = document.getElementById("bottleSlide");
-      if(!img) return;
+      const imgs = Array.from(document.querySelectorAll("img.led"));
+      if (!imgs.length) return;
 
-      let i = 0;
+      let t = 0;
+
+      // (optional) preload to avoid flicker
+      frames.forEach(src => { const i = new Image(); i.src = src; });
+
       setInterval(() => {
-        img.style.opacity = "0";
-        setTimeout(() => {
-          i = (i + 1) % slides.length;
-          img.src = slides[i];
-          img.style.opacity = "1";
-        }, 220);
+        t = (t + 1) % frames.length;
+
+        imgs.forEach(img => {
+          const offset = Number(img.dataset.offset || 0);
+          const idx = (t + offset) % frames.length;
+
+          img.style.opacity = "0";
+          setTimeout(() => {
+            img.src = frames[idx];
+            img.style.opacity = "1";
+          }, 180);
+        });
+
       }, 1000);
     })();
   </script>
