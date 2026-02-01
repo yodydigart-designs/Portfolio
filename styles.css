@@ -452,7 +452,7 @@ a:hover{opacity:.92}
 
 @keyframes logo3DTurn{
   0%{ transform: rotateY(0deg); }
-  50%{ transform: rotateY(25deg); }
+  50%{ transform: rotateY(50deg); }
   100%{ transform: rotateY(0deg); }
 }
 
@@ -495,3 +495,4 @@ a:hover{opacity:.92}
   object-fit: contain;       /* logos won't crop */
   display: block;
 }
+
