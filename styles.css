@@ -447,7 +447,7 @@ a:hover{opacity:.92}
   display:block;
   transform-style: preserve-3d;
   will-change: transform;
-  animation: logo3DTurn 6s ease-in-out infinite !important;
+  animation: logo3DTurn 6s linear infinite;
 }
 
 @keyframes logo3DTurn{
@@ -494,6 +494,7 @@ a:hover{opacity:.92}
   object-fit: contain;       /* logos won't crop */
   display: block;
 }
+
 
 
 
