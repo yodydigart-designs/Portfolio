@@ -181,7 +181,7 @@
           const offset = Number(img.dataset.offset || 0);
           const idx = (t + offset) % frames.length;
 
-          img.style.opacity = "0";
+          img.style.opacity = "1";
           setTimeout(() => {
             img.src = frames[idx];
             img.style.opacity = "1";
