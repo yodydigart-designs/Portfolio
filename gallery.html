@@ -12,13 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="gallery-page">
   <div class="layout">
 
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__top">
-
         <a class="brand" href="/index.html" aria-label="Home">
           <img src="/assets/logo.svg" class="brand__logo" alt="Logo" />
           <span class="brand__name">Odisseas Tsantekides</span>
@@ -69,14 +68,18 @@
       </div>
       <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-      <!-- Top strip: animated logo + playlist button -->
-      <div class="g-top">
+      <!-- Top area -->
+      <header class="g-top">
+        <!-- Animated logo (same idea as home) -->
         <div class="hero-logo hero-logo--gallery" aria-label="Logo intro">
-          <img src="/assets/logo.svg" alt="Yody DigArt logo" />
+          <img src="/assets/logo.svg" alt="Yody DigArt logo" class="hero-logo__img" />
         </div>
 
+        <!-- Sticky Playlist button (top-right) -->
         <div class="plwrap" aria-label="Playlist">
-          <button class="plbtn" id="plBtn" aria-expanded="false" aria-controls="plPanel">♫ Playlist</button>
+          <button class="plbtn" id="plBtn" aria-expanded="false" aria-controls="plPanel">
+            ♫ Playlist
+          </button>
 
           <div class="plpanel" id="plPanel" aria-hidden="true">
             <iframe
@@ -91,166 +94,94 @@
               loading="lazy"></iframe>
 
             <div class="plnote">
-              *Σε κινητό ίσως χρειαστεί να πατήσεις Play μέσα στο Spotify (autoplay restriction).
+              *Σε κινητό ίσως χρειαστεί να πατήσεις Play μέσα στο Spotify (autoplay restrictions).
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      <!-- MUSEUM GAME -->
-      <section class="museum" aria-label="Interactive museum gallery">
-        <header class="museum__head">
-          <div>
-            <h1 class="museum__title">Museum Walk</h1>
-            <p class="museum__sub">Move → ← / A D (ή τα κουμπιά στο κινητό). Πλησίασε έναν πίνακα και πάτα <kbd>E</kbd> / Tap “View”.</p>
-          </div>
+      <!-- Gallery rail -->
+      <section class="g-rail" aria-label="Gallery">
+        <div class="g-rail__hint">
+          Scroll → (ή drag). Click για full view. ESC για κλείσιμο.
+        </div>
 
-          <div class="hud">
-            <div class="hud__chip" id="hudHint">Find a frame.</div>
-          </div>
-        </header>
+        <div class="g-track" id="gTrack" tabindex="0" aria-label="Horizontal gallery">
+          <!-- =========================
+               ΒΑΛΕ/ΑΛΛΑΞΕ ΕΔΩ ΤΑ ITEMS
+               ========================= -->
 
-        <div class="stage-wrap">
-          <div class="stage" id="stage">
-
-            <!-- Decorative wall details -->
-            <div class="grain" aria-hidden="true"></div>
-            <div class="vignette" aria-hidden="true"></div>
-
-            <!-- Frames (placeholders now, you will swap thumbnails later) -->
-            <div class="frame" data-id="p1" style="left: 7%;">
-              <div class="frame__mat">
-                <div class="frame__art">PROJECT 01</div>
-              </div>
-              <div class="frame__label">Aris Kavalariou</div>
+          <article class="g-item" data-title="Aris Kavalariou" data-src="/assets/Logo-Teliko.png">
+            <img src="/assets/Logo-Teliko.png" alt="Aris Kavalariou" loading="lazy">
+            <div class="g-cap">
+              <div class="g-cap__t">Aris Kavalariou</div>
+              <div class="g-cap__s">Graphic • Football</div>
             </div>
+          </article>
 
-            <div class="frame" data-id="p2" style="left: 30%;">
-              <div class="frame__mat">
-                <div class="frame__art">PROJECT 02</div>
-              </div>
-              <div class="frame__label">Domain Tsantekides</div>
+          <article class="g-item" data-title="Domain Tsantekides" data-src="/assets/domain_tsantekides_logo.png">
+            <img src="/assets/domain_tsantekides_logo.png" alt="Domain Tsantekides" loading="lazy">
+            <div class="g-cap">
+              <div class="g-cap__t">Domain Tsantekides</div>
+              <div class="g-cap__s">Brand • Winery</div>
             </div>
+          </article>
 
-            <div class="frame" data-id="p5" style="left: 53%;">
-              <div class="frame__mat">
-                <div class="frame__art">PROJECT 03</div>
-              </div>
-              <div class="frame__label">CGS Works</div>
+          <article class="g-item" data-title="Vinyl Whole" data-src="/assets/vinyl_wholeimg.jpg">
+            <img src="/assets/vinyl_wholeimg.jpg" alt="Vinyl Whole" loading="lazy">
+            <div class="g-cap">
+              <div class="g-cap__t">Raw Frequencies</div>
+              <div class="g-cap__s">Music • Cover</div>
             </div>
+          </article>
 
-            <div class="frame" data-id="p3" style="left: 76%;">
-              <div class="frame__mat">
-                <div class="frame__art">PROJECT 04</div>
-              </div>
-              <div class="frame__label">Raw Frequencies</div>
+          <article class="g-item" data-title="Vinyl Cover Concept" data-src="/assets/vinyl-cover-concept.jpg">
+            <img src="/assets/vinyl-cover-concept.jpg" alt="Vinyl cover concept" loading="lazy">
+            <div class="g-cap">
+              <div class="g-cap__t">Cover Concept</div>
+              <div class="g-cap__s">Rough • Underground</div>
             </div>
+          </article>
 
-            <!-- Player -->
-            <div class="player" id="player" aria-label="Character">
-              <!-- Simple “μπαρμπαδάκι” SVG: round head, thin mustache, beanie, cigarette -->
-              <svg class="player__svg" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <!-- shadow -->
-                <ellipse cx="60" cy="170" rx="28" ry="6" fill="rgba(0,0,0,.45)"/>
-
-                <!-- legs -->
-                <g id="legs" stroke="rgba(255,255,255,.78)" stroke-width="4" stroke-linecap="round">
-                  <path id="legL" d="M52 128 L46 162" />
-                  <path id="legR" d="M68 128 L74 162" />
-                  <ellipse cx="43" cy="165" rx="10" ry="5" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.30)" stroke-width="2"/>
-                  <ellipse cx="77" cy="165" rx="10" ry="5" fill="rgba(255,255,255,.10)" stroke="rgba(255,255,255,.30)" stroke-width="2"/>
-                </g>
-
-                <!-- body -->
-                <rect x="38" y="84" width="44" height="56" rx="14"
-                      fill="rgba(255,255,255,.06)"
-                      stroke="rgba(255,255,255,.78)" stroke-width="4"/>
-
-                <!-- collar -->
-                <path d="M44 92 Q60 108 76 92" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="3"/>
-
-                <!-- arms -->
-                <g id="arms" stroke="rgba(255,255,255,.78)" stroke-width="4" stroke-linecap="round">
-                  <path id="armL" d="M38 102 L22 122" />
-                  <path id="armR" d="M82 102 L98 120" />
-                </g>
-
-                <!-- head -->
-                <circle cx="60" cy="52" r="30"
-                        fill="rgba(255,255,255,.04)"
-                        stroke="rgba(255,255,255,.78)" stroke-width="4"/>
-
-                <!-- beanie -->
-                <path d="M32 52
-                         Q60 18 88 52
-                         L88 46
-                         Q60 14 32 46 Z"
-                      fill="rgba(255,255,255,.08)"
-                      stroke="rgba(255,255,255,.78)" stroke-width="4" stroke-linejoin="round"/>
-                <path d="M35 47 Q60 28 85 47" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="3"/>
-
-                <!-- face -->
-                <circle cx="50" cy="54" r="3" fill="rgba(255,255,255,.78)"/>
-                <circle cx="70" cy="54" r="3" fill="rgba(255,255,255,.78)"/>
-                <path d="M60 58 L60 64" stroke="rgba(255,255,255,.55)" stroke-width="3" stroke-linecap="round"/>
-
-                <!-- thin moustache -->
-                <path d="M48 70 Q60 66 72 70"
-                      fill="none"
-                      stroke="rgba(255,255,255,.78)"
-                      stroke-width="3"
-                      stroke-linecap="round"/>
-
-                <!-- cigarette -->
-                <g transform="translate(74,68)">
-                  <rect x="0" y="0" width="20" height="5" rx="2"
-                        fill="rgba(255,255,255,.70)"/>
-                  <rect x="16" y="0" width="4" height="5" rx="1"
-                        fill="rgba(255,110,110,.75)"/>
-                  <!-- smoke -->
-                  <path d="M-2 -2 C-10 -14 8 -18 0 -30"
-                        fill="none"
-                        stroke="rgba(255,255,255,.20)"
-                        stroke-width="3"
-                        stroke-linecap="round"/>
-                </g>
-              </svg>
+          <article class="g-item" data-title="Portraits" data-src="/assets/Portraits_Illustration.png">
+            <img src="/assets/Portraits_Illustration.png" alt="Portraits Illustration" loading="lazy">
+            <div class="g-cap">
+              <div class="g-cap__t">Portraits</div>
+              <div class="g-cap__s">Illustration • Poster</div>
             </div>
+          </article>
 
-            <!-- Interaction prompt -->
-            <div class="prompt" id="prompt" aria-hidden="true">
-              <div class="prompt__box">
-                <div class="prompt__title">View</div>
-                <div class="prompt__sub">Press <kbd>E</kbd> / Tap</div>
-              </div>
+          <article class="g-item" data-title="Wine Bottle Mockup" data-src="/assets/wine_bottle_mockup.jpg">
+            <img src="/assets/wine_bottle_mockup.jpg" alt="Wine bottle mockup" loading="lazy">
+            <div class="g-cap">
+              <div class="g-cap__t">Mockup</div>
+              <div class="g-cap__s">Packaging</div>
             </div>
+          </article>
 
-          </div>
-
-          <!-- Mobile controls -->
-          <div class="controls" aria-label="Mobile controls">
-            <button class="ctrl" id="leftBtn" aria-label="Move left">←</button>
-            <button class="ctrl" id="actionBtn" aria-label="View artwork">View</button>
-            <button class="ctrl" id="rightBtn" aria-label="Move right">→</button>
-          </div>
+          <!-- add more items the same way -->
         </div>
       </section>
 
-      <!-- MODAL -->
-      <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-label="Artwork preview">
-        <div class="modal__backdrop" id="modalBg"></div>
-        <div class="modal__panel" role="document">
-          <button class="modal__close" id="modalClose" aria-label="Close">✕</button>
-          <div class="modal__title" id="modalTitle">Title</div>
-          <div class="modal__meta" id="modalMeta">Tag</div>
+      <!-- Lightbox -->
+      <div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Image viewer">
+        <div class="lb__overlay" id="lbClose" aria-hidden="true"></div>
 
-          <!-- placeholder area -->
-          <div class="modal__art" id="modalArt">
-            <div class="modal__ph">Preview placeholder (θα βάλουμε εικόνες μετά)</div>
+        <div class="lb__panel" role="document">
+          <button class="lb__x" id="lbX" aria-label="Close">✕</button>
+
+          <div class="lb__top">
+            <div class="lb__title" id="lbTitle">Title</div>
+            <div class="lb__sub">← / → για αλλαγή</div>
           </div>
 
-          <div class="modal__actions">
-            <a class="modal__link" id="modalLink" href="/index.html">Open project →</a>
+          <div class="lb__stage">
+            <img id="lbImg" src="" alt="">
+          </div>
+
+          <div class="lb__nav">
+            <button class="lb__btn" id="lbPrev" aria-label="Previous">← Prev</button>
+            <button class="lb__btn" id="lbNext" aria-label="Next">Next →</button>
           </div>
         </div>
       </div>
@@ -260,10 +191,10 @@
 
   <script>
     // year
-    const yearEl = document.getElementById("year");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+    const y = document.getElementById("year");
+    if (y) y.textContent = new Date().getFullYear();
 
-    // mobile sidebar menu
+    // mobile sidebar
     const sidebar = document.getElementById("sidebar");
     const menuBtn = document.getElementById("menuBtn");
     const overlay = document.getElementById("overlay");
@@ -282,17 +213,16 @@
       menuBtn?.setAttribute("aria-expanded","false");
       overlay?.setAttribute("aria-hidden","true");
     }
-
-    if (menuBtn && sidebar && overlay) {
+    if (menuBtn && sidebar && overlay){
       menuBtn.addEventListener("click", () => sidebar.classList.contains("is-open") ? closeMenu() : openMenu());
       overlay.addEventListener("click", closeMenu);
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+      document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeMenu(); });
       sidebar.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
         if (window.matchMedia("(max-width: 820px)").matches) closeMenu();
       }));
     }
 
-    // Playlist dropdown
+    // playlist dropdown
     const plBtn = document.getElementById("plBtn");
     const plPanel = document.getElementById("plPanel");
     plBtn?.addEventListener("click", () => {
