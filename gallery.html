@@ -12,12 +12,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body class="gallery-page">
+<body>
   <div class="layout">
 
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__top">
+
         <a class="brand" href="/index.html" aria-label="Home">
           <img src="/assets/logo.svg" class="brand__logo" alt="Logo" />
           <span class="brand__name">Odisseas Tsantekides</span>
@@ -28,7 +29,6 @@
           <ul class="nav__list">
             <li><a href="/projects/project-1.html">Aris Kavalariou</a></li>
             <li><a href="/projects/project-2.html">Domain Tsantekides</a></li>
-            <li><a href="/projects/project-5.html">CGS Works</a></li>
             <li><a href="/projects/project-3.html">Raw Frequencies</a></li>
             <li><a href="/projects/project-4.html">Selected Small Works</a></li>
           </ul>
@@ -68,133 +68,121 @@
       </div>
       <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-      <!-- Top area -->
-      <header class="g-top">
-        <!-- Animated logo (same idea as home) -->
-        <div class="hero-logo hero-logo--gallery" aria-label="Logo intro">
-          <img src="/assets/logo.svg" alt="Yody DigArt logo" class="hero-logo__img" />
-        </div>
+      <!-- Museum viewport -->
+      <section class="museum" aria-label="Interactive gallery">
+        <!-- Top HUD -->
+        <div class="museum__hud">
+          <div class="museum__title">
+            <div class="hero-logo hero-logo--gallery" aria-label="Logo intro">
+              <img src="/assets/logo.svg" alt="Logo" />
+            </div>
+            <div class="museum__hint">
+              Move: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / Arrows • Inspect: <kbd>Enter</kbd> • Menu: <kbd>Esc</kbd>
+            </div>
+          </div>
 
-        <!-- Sticky Playlist button (top-right) -->
-        <div class="plwrap" aria-label="Playlist">
-          <button class="plbtn" id="plBtn" aria-expanded="false" aria-controls="plPanel">
-            ♫ Playlist
-          </button>
+          <!-- Playlist (top-right, inside museum) -->
+          <div class="plwrap" aria-label="Playlist">
+            <button class="plbtn" id="plBtn" aria-expanded="false" aria-controls="plPanel">
+              ♫ Playlist
+            </button>
 
-          <div class="plpanel" id="plPanel" aria-hidden="true">
-            <iframe
-              data-testid="embed-iframe"
-              style="border-radius:12px"
-              src="https://open.spotify.com/embed/playlist/2pAFH6oJbozv45DoYLXyhB?utm_source=generator"
-              width="100%"
-              height="152"
-              frameborder="0"
-              allowfullscreen=""
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"></iframe>
-
-            <div class="plnote">
-              *Σε κινητό ίσως χρειαστεί να πατήσεις Play μέσα στο Spotify (autoplay restrictions).
+            <div class="plpanel" id="plPanel" aria-hidden="true">
+              <iframe
+                data-testid="embed-iframe"
+                style="border-radius:12px"
+                src="https://open.spotify.com/embed/playlist/2pAFH6oJbozv45DoYLXyhB?utm_source=generator"
+                width="100%"
+                height="152"
+                frameborder="0"
+                allowfullscreen=""
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"></iframe>
+              <div class="plnote">
+                *On mobile: press play inside the player (autoplay restrictions).
+              </div>
             </div>
           </div>
         </div>
-      </header>
 
-      <!-- Gallery rail -->
-      <section class="g-rail" aria-label="Gallery">
-        <div class="g-rail__hint">
-          Scroll → (ή drag). Click για full view. ESC για κλείσιμο.
+        <!-- Scene -->
+        <div class="museum__viewport" id="viewport">
+          <div class="scene" id="scene">
+            <!-- Floor & walls -->
+            <div class="floor"></div>
+            <div class="wall wall--back"></div>
+            <div class="wall wall--left"></div>
+            <div class="wall wall--right"></div>
+
+            <!-- Paintings injected by JS -->
+            <div class="paintings" id="paintings"></div>
+
+            <!-- Character (placeholder “babadas”) -->
+            <div class="char" id="char" aria-label="Character">
+              <div class="char__shadow"></div>
+              <div class="char__body">
+                <div class="char__head">
+                  <div class="char__beanie"></div>
+                  <div class="char__face">
+                    <div class="char__eye"></div>
+                    <div class="char__eye char__eye--r"></div>
+                    <div class="char__moustache"></div>
+                    <div class="char__smoke"></div>
+                  </div>
+                </div>
+                <div class="char__torso"></div>
+                <div class="char__leg char__leg--l"></div>
+                <div class="char__leg char__leg--r"></div>
+              </div>
+            </div>
+
+            <!-- Interaction prompt -->
+            <div class="prompt" id="prompt" aria-hidden="true">
+              <div class="prompt__box">
+                <div class="prompt__title" id="promptTitle">Inspect</div>
+                <div class="prompt__sub" id="promptSub">Press Enter</div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <div class="g-track" id="gTrack" tabindex="0" aria-label="Horizontal gallery">
-          <!-- =========================
-               ΒΑΛΕ/ΑΛΛΑΞΕ ΕΔΩ ΤΑ ITEMS
-               ========================= -->
-
-          <article class="g-item" data-title="Aris Kavalariou" data-src="/assets/Logo-Teliko.png">
-            <img src="/assets/Logo-Teliko.png" alt="Aris Kavalariou" loading="lazy">
-            <div class="g-cap">
-              <div class="g-cap__t">Aris Kavalariou</div>
-              <div class="g-cap__s">Graphic • Football</div>
+        <!-- Details modal -->
+        <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-label="Artwork details">
+          <div class="modal__card">
+            <button class="modal__x" id="modalClose" aria-label="Close">✕</button>
+            <div class="modal__media">
+              <img id="modalImg" alt="" />
             </div>
-          </article>
-
-          <article class="g-item" data-title="Domain Tsantekides" data-src="/assets/domain_tsantekides_logo.png">
-            <img src="/assets/domain_tsantekides_logo.png" alt="Domain Tsantekides" loading="lazy">
-            <div class="g-cap">
-              <div class="g-cap__t">Domain Tsantekides</div>
-              <div class="g-cap__s">Brand • Winery</div>
+            <div class="modal__meta">
+              <div class="modal__h" id="modalTitle">Title</div>
+              <div class="modal__p" id="modalDesc">Description</div>
+              <div class="modal__actions">
+                <a class="modal__btn" id="modalLink" href="#" target="_self" rel="noreferrer">Open project →</a>
+              </div>
             </div>
-          </article>
-
-          <article class="g-item" data-title="Vinyl Whole" data-src="/assets/vinyl_wholeimg.jpg">
-            <img src="/assets/vinyl_wholeimg.jpg" alt="Vinyl Whole" loading="lazy">
-            <div class="g-cap">
-              <div class="g-cap__t">Raw Frequencies</div>
-              <div class="g-cap__s">Music • Cover</div>
-            </div>
-          </article>
-
-          <article class="g-item" data-title="Vinyl Cover Concept" data-src="/assets/vinyl-cover-concept.jpg">
-            <img src="/assets/vinyl-cover-concept.jpg" alt="Vinyl cover concept" loading="lazy">
-            <div class="g-cap">
-              <div class="g-cap__t">Cover Concept</div>
-              <div class="g-cap__s">Rough • Underground</div>
-            </div>
-          </article>
-
-          <article class="g-item" data-title="Portraits" data-src="/assets/Portraits_Illustration.png">
-            <img src="/assets/Portraits_Illustration.png" alt="Portraits Illustration" loading="lazy">
-            <div class="g-cap">
-              <div class="g-cap__t">Portraits</div>
-              <div class="g-cap__s">Illustration • Poster</div>
-            </div>
-          </article>
-
-          <article class="g-item" data-title="Wine Bottle Mockup" data-src="/assets/wine_bottle_mockup.jpg">
-            <img src="/assets/wine_bottle_mockup.jpg" alt="Wine bottle mockup" loading="lazy">
-            <div class="g-cap">
-              <div class="g-cap__t">Mockup</div>
-              <div class="g-cap__s">Packaging</div>
-            </div>
-          </article>
-
-          <!-- add more items the same way -->
+          </div>
         </div>
+
       </section>
 
-      <!-- Lightbox -->
-      <div class="lb" id="lb" aria-hidden="true" role="dialog" aria-label="Image viewer">
-        <div class="lb__overlay" id="lbClose" aria-hidden="true"></div>
-
-        <div class="lb__panel" role="document">
-          <button class="lb__x" id="lbX" aria-label="Close">✕</button>
-
-          <div class="lb__top">
-            <div class="lb__title" id="lbTitle">Title</div>
-            <div class="lb__sub">← / → για αλλαγή</div>
-          </div>
-
-          <div class="lb__stage">
-            <img id="lbImg" src="" alt="">
-          </div>
-
-          <div class="lb__nav">
-            <button class="lb__btn" id="lbPrev" aria-label="Previous">← Prev</button>
-            <button class="lb__btn" id="lbNext" aria-label="Next">Next →</button>
-          </div>
-        </div>
+      <!-- Preload the 4 cover images (avoid flicker) -->
+      <div style="display:none" aria-hidden="true">
+        <img src="/assets/Logo-Teliko.png" alt="">
+        <img src="/assets/domain_tsantekides_logo.png" alt="">
+        <img src="/assets/vinyl_wholeimg.jpg" alt="">
+        <img src="/assets/p2-cover.jpg" alt="">
       </div>
 
     </main>
   </div>
 
   <script>
-    // year
-    const y = document.getElementById("year");
-    if (y) y.textContent = new Date().getFullYear();
+    // Year
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // mobile sidebar
+    // Mobile sidebar (same pattern as your index)
     const sidebar = document.getElementById("sidebar");
     const menuBtn = document.getElementById("menuBtn");
     const overlay = document.getElementById("overlay");
@@ -213,23 +201,15 @@
       menuBtn?.setAttribute("aria-expanded","false");
       overlay?.setAttribute("aria-hidden","true");
     }
-    if (menuBtn && sidebar && overlay){
+
+    if (menuBtn && sidebar && overlay) {
       menuBtn.addEventListener("click", () => sidebar.classList.contains("is-open") ? closeMenu() : openMenu());
       overlay.addEventListener("click", closeMenu);
-      document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeMenu(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
       sidebar.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
         if (window.matchMedia("(max-width: 820px)").matches) closeMenu();
       }));
     }
-
-    // playlist dropdown
-    const plBtn = document.getElementById("plBtn");
-    const plPanel = document.getElementById("plPanel");
-    plBtn?.addEventListener("click", () => {
-      const open = plPanel.classList.toggle("is-open");
-      plBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      plPanel.setAttribute("aria-hidden", open ? "false" : "true");
-    });
   </script>
 
   <script src="/gallery.js"></script>
