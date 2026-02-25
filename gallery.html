@@ -68,57 +68,59 @@
       </div>
       <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-      <!-- Museum viewport -->
+      <!-- Museum -->
       <section class="museum" aria-label="Interactive gallery">
-        <!-- Top HUD -->
+
+        <!-- HUD -->
         <div class="museum__hud">
-          <div class="museum__title">
+          <div class="museum__hudL">
             <div class="hero-logo hero-logo--gallery" aria-label="Logo intro">
               <img src="/assets/logo.svg" alt="Logo" />
             </div>
             <div class="museum__hint">
-              Move: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / Arrows • Inspect: <kbd>Enter</kbd> • Menu: <kbd>Esc</kbd>
+              Move: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / Arrows • Inspect: <kbd>Enter</kbd> • Close: <kbd>Esc</kbd>
             </div>
           </div>
 
-          <!-- Playlist (top-right, inside museum) -->
-          <div class="plwrap" aria-label="Playlist">
-            <button class="plbtn" id="plBtn" aria-expanded="false" aria-controls="plPanel">
-              ♫ Playlist
-            </button>
+          <div class="museum__hudR">
+            <div class="museum__status" id="status">JS: loading…</div>
 
-            <div class="plpanel" id="plPanel" aria-hidden="true">
-              <iframe
-                data-testid="embed-iframe"
-                style="border-radius:12px"
-                src="https://open.spotify.com/embed/playlist/2pAFH6oJbozv45DoYLXyhB?utm_source=generator"
-                width="100%"
-                height="152"
-                frameborder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"></iframe>
-              <div class="plnote">
-                *On mobile: press play inside the player (autoplay restrictions).
+            <div class="plwrap" aria-label="Playlist">
+              <button class="plbtn" id="plBtn" aria-expanded="false" aria-controls="plPanel">♫ Playlist</button>
+              <div class="plpanel" id="plPanel" aria-hidden="true">
+                <iframe
+                  data-testid="embed-iframe"
+                  style="border-radius:12px"
+                  src="https://open.spotify.com/embed/playlist/2pAFH6oJbozv45DoYLXyhB?utm_source=generator"
+                  width="100%"
+                  height="152"
+                  frameborder="0"
+                  allowfullscreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"></iframe>
+                <div class="plnote">*Mobile: press play inside the player (autoplay restrictions).</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Scene -->
-        <div class="museum__viewport" id="viewport">
+        <!-- Viewport (focusable for controls) -->
+        <div class="museum__viewport" id="viewport" tabindex="0" aria-label="Museum viewport (click to focus)">
           <div class="scene" id="scene">
-            <!-- Floor & walls -->
-            <div class="floor"></div>
-            <div class="wall wall--back"></div>
-            <div class="wall wall--left"></div>
-            <div class="wall wall--right"></div>
 
-            <!-- Paintings injected by JS -->
+            <!-- Walls / floor -->
+            <div class="layer layer--backwall"></div>
+            <div class="layer layer--leftwall"></div>
+            <div class="layer layer--rightwall"></div>
+            <div class="layer layer--ceiling"></div>
+            <div class="layer layer--floor"></div>
+            <div class="layer layer--vignette"></div>
+
+            <!-- Paintings -->
             <div class="paintings" id="paintings"></div>
 
-            <!-- Character (placeholder “babadas”) -->
-            <div class="char" id="char" aria-label="Character">
+            <!-- Character (placeholder) -->
+            <div class="char" id="char" aria-hidden="true">
               <div class="char__shadow"></div>
               <div class="char__body">
                 <div class="char__head">
@@ -136,7 +138,7 @@
               </div>
             </div>
 
-            <!-- Interaction prompt -->
+            <!-- Prompt -->
             <div class="prompt" id="prompt" aria-hidden="true">
               <div class="prompt__box">
                 <div class="prompt__title" id="promptTitle">Inspect</div>
@@ -147,7 +149,7 @@
           </div>
         </div>
 
-        <!-- Details modal -->
+        <!-- Modal -->
         <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-label="Artwork details">
           <div class="modal__card">
             <button class="modal__x" id="modalClose" aria-label="Close">✕</button>
@@ -166,7 +168,7 @@
 
       </section>
 
-      <!-- Preload the 4 cover images (avoid flicker) -->
+      <!-- Preload your cover images (from your assets list) -->
       <div style="display:none" aria-hidden="true">
         <img src="/assets/Logo-Teliko.png" alt="">
         <img src="/assets/domain_tsantekides_logo.png" alt="">
@@ -182,7 +184,7 @@
     const yearEl = document.getElementById("year");
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // Mobile sidebar (same pattern as your index)
+    // Mobile sidebar
     const sidebar = document.getElementById("sidebar");
     const menuBtn = document.getElementById("menuBtn");
     const overlay = document.getElementById("overlay");
@@ -201,7 +203,6 @@
       menuBtn?.setAttribute("aria-expanded","false");
       overlay?.setAttribute("aria-hidden","true");
     }
-
     if (menuBtn && sidebar && overlay) {
       menuBtn.addEventListener("click", () => sidebar.classList.contains("is-open") ? closeMenu() : openMenu());
       overlay.addEventListener("click", closeMenu);
