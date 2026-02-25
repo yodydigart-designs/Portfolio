@@ -1,218 +1,237 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gallery — Odisseas Tsantekides</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CGS Works – Word Search</title>
 
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="stylesheet" href="/gallery.css" />
+<style>
+body{
+    margin:0;
+    background:#0d0f14;
+    font-family:Arial, Helvetica, sans-serif;
+    color:white;
+    overflow:hidden;
+}
 
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+#gameWrapper{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:20px;
+}
+
+#counter{
+    font-size:20px;
+    letter-spacing:2px;
+}
+
+#grid{
+    display:grid;
+    grid-template-columns:repeat(10,50px);
+    grid-template-rows:repeat(10,50px);
+    gap:5px;
+}
+
+.cell{
+    width:50px;
+    height:50px;
+    background:#151922;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:18px;
+    cursor:pointer;
+    user-select:none;
+    border-radius:6px;
+    transition:0.2s;
+}
+
+.cell.selected{
+    background:#2e3b55;
+}
+
+.cell.found{
+    background:#00b894;
+    color:black;
+}
+
+#modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(10px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+#modalContent{
+    background:#111;
+    padding:40px;
+    border-radius:20px;
+    width:60%;
+    max-width:600px;
+    text-align:center;
+    animation:pop 0.3s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(0.8);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+button{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    cursor:pointer;
+}
+</style>
 </head>
 
 <body>
-  <div class="layout">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar__top">
+<div id="gameWrapper">
+    <div id="counter">0 / 5 words found</div>
+    <div id="grid"></div>
+</div>
 
-        <a class="brand" href="/index.html" aria-label="Home">
-          <img src="/assets/logo.svg" class="brand__logo" alt="Logo" />
-          <span class="brand__name">Odisseas Tsantekides</span>
-        </a>
+<div id="modal">
+    <div id="modalContent">
+        <h2 id="wordTitle"></h2>
 
-        <nav class="nav">
-          <p class="nav__label">Projects</p>
-          <ul class="nav__list">
-            <li><a href="/projects/project-1.html">Aris Kavalariou</a></li>
-            <li><a href="/projects/project-2.html">Domain Tsantekides</a></li>
-            <li><a href="/projects/project-3.html">Raw Frequencies</a></li>
-            <li><a href="/projects/project-4.html">Selected Small Works</a></li>
-          </ul>
-        </nav>
+        <!-- ===================================== -->
+        <!--  🔥 ΕΔΩ ΞΕΚΙΝΑΕΙ ΤΟ CONTENT ΣΟΥ        -->
+        <!--  Μπορείς να βάλεις κείμενο, εικόνες,   -->
+        <!--  οτιδήποτε θες για κάθε project        -->
+        <!-- ===================================== -->
 
-        <div class="social">
-          <p class="nav__label">Social</p>
-          <ul class="social__list">
-            <li><a href="https://instagram.com/yody_digart" target="_blank" rel="noreferrer">Instagram</a></li>
-            <li><a href="https://behance.net/odisseastsad24" target="_blank" rel="noreferrer">Behance</a></li>
-            <li><a href="https://www.linkedin.com/in/oditsad99" target="_blank" rel="noreferrer">LinkedIn</a></li>
-          </ul>
-        </div>
+        <p>Βάλε εδώ περιγραφή για το project.</p>
+        <img src="" style="max-width:100%;margin-top:20px;border-radius:10px;">
 
-        <div class="sidebar__spacer"></div>
+        <!-- ===================================== -->
+        <!--  🔥 ΕΔΩ ΤΕΛΕΙΩΝΕΙ ΤΟ CONTENT ΣΟΥ        -->
+        <!-- ===================================== -->
 
-        <nav class="nav nav--secondary">
-          <ul class="nav__list nav__list--secondary">
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/contact.html">Contact</a></li>
-            <li><a class="active" aria-current="page" href="/gallery.html">Gallery</a></li>
-          </ul>
-        </nav>
-      </div>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
 
-      <div class="sidebar__footer">
-        <small>© <span id="year"></span> Odisseas Tsantekides</small>
-      </div>
-    </aside>
+<script>
 
-    <!-- CONTENT -->
-    <main class="content">
+const words = ["GRAPHIC","SKG","MUSIC","LIFE","DREAM"];
+const gridSize = 10;
+const gridElement = document.getElementById("grid");
+const counter = document.getElementById("counter");
 
-      <!-- Mobile top bar -->
-      <div class="mbar" aria-label="Mobile header">
-        <button class="mbar__btn" id="menuBtn" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
-      </div>
-      <div class="overlay" id="overlay" aria-hidden="true"></div>
+let foundWords = [];
+let isSelecting = false;
+let selectedCells = [];
 
-      <!-- Museum -->
-      <section class="museum" aria-label="Interactive gallery">
+const grid = Array(gridSize).fill().map(()=>Array(gridSize).fill(""));
 
-        <!-- HUD -->
-        <div class="museum__hud">
-          <div class="museum__hudL">
-            <div class="hero-logo hero-logo--gallery" aria-label="Logo intro">
-              <img src="/assets/logo.svg" alt="Logo" />
-            </div>
-            <div class="museum__hint">
-              Move: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / Arrows • Inspect: <kbd>Enter</kbd> • Close: <kbd>Esc</kbd>
-            </div>
-          </div>
-
-          <div class="museum__hudR">
-            <div class="museum__status" id="status">JS: loading…</div>
-
-            <div class="plwrap" aria-label="Playlist">
-              <button class="plbtn" id="plBtn" aria-expanded="false" aria-controls="plPanel">♫ Playlist</button>
-              <div class="plpanel" id="plPanel" aria-hidden="true">
-                <iframe
-                  data-testid="embed-iframe"
-                  style="border-radius:12px"
-                  src="https://open.spotify.com/embed/playlist/2pAFH6oJbozv45DoYLXyhB?utm_source=generator"
-                  width="100%"
-                  height="152"
-                  frameborder="0"
-                  allowfullscreen=""
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                  loading="lazy"></iframe>
-                <div class="plnote">*Mobile: press play inside the player (autoplay restrictions).</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Viewport (focusable for controls) -->
-        <div class="museum__viewport" id="viewport" tabindex="0" aria-label="Museum viewport (click to focus)">
-          <div class="scene" id="scene">
-
-            <!-- Walls / floor -->
-            <div class="layer layer--backwall"></div>
-            <div class="layer layer--leftwall"></div>
-            <div class="layer layer--rightwall"></div>
-            <div class="layer layer--ceiling"></div>
-            <div class="layer layer--floor"></div>
-            <div class="layer layer--vignette"></div>
-
-            <!-- Paintings -->
-            <div class="paintings" id="paintings"></div>
-
-            <!-- Character (placeholder) -->
-            <div class="char" id="char" aria-hidden="true">
-              <div class="char__shadow"></div>
-              <div class="char__body">
-                <div class="char__head">
-                  <div class="char__beanie"></div>
-                  <div class="char__face">
-                    <div class="char__eye"></div>
-                    <div class="char__eye char__eye--r"></div>
-                    <div class="char__moustache"></div>
-                    <div class="char__smoke"></div>
-                  </div>
-                </div>
-                <div class="char__torso"></div>
-                <div class="char__leg char__leg--l"></div>
-                <div class="char__leg char__leg--r"></div>
-              </div>
-            </div>
-
-            <!-- Prompt -->
-            <div class="prompt" id="prompt" aria-hidden="true">
-              <div class="prompt__box">
-                <div class="prompt__title" id="promptTitle">Inspect</div>
-                <div class="prompt__sub" id="promptSub">Press Enter</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-label="Artwork details">
-          <div class="modal__card">
-            <button class="modal__x" id="modalClose" aria-label="Close">✕</button>
-            <div class="modal__media">
-              <img id="modalImg" alt="" />
-            </div>
-            <div class="modal__meta">
-              <div class="modal__h" id="modalTitle">Title</div>
-              <div class="modal__p" id="modalDesc">Description</div>
-              <div class="modal__actions">
-                <a class="modal__btn" id="modalLink" href="#" target="_self" rel="noreferrer">Open project →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- Preload your cover images (from your assets list) -->
-      <div style="display:none" aria-hidden="true">
-        <img src="/assets/Logo-Teliko.png" alt="">
-        <img src="/assets/domain_tsantekides_logo.png" alt="">
-        <img src="/assets/vinyl_wholeimg.jpg" alt="">
-        <img src="/assets/p2-cover.jpg" alt="">
-      </div>
-
-    </main>
-  </div>
-
-  <script>
-    // Year
-    const yearEl = document.getElementById("year");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-    // Mobile sidebar
-    const sidebar = document.getElementById("sidebar");
-    const menuBtn = document.getElementById("menuBtn");
-    const overlay = document.getElementById("overlay");
-
-    function openMenu(){
-      sidebar.classList.add("is-open");
-      overlay.classList.add("is-show");
-      document.body.classList.add("no-scroll");
-      menuBtn?.setAttribute("aria-expanded","true");
-      overlay?.setAttribute("aria-hidden","false");
+function placeWord(word,row,col,dir){
+    for(let i=0;i<word.length;i++){
+        let r=row+(dir[0]*i);
+        let c=col+(dir[1]*i);
+        grid[r][c]=word[i];
     }
-    function closeMenu(){
-      sidebar.classList.remove("is-open");
-      overlay.classList.remove("is-show");
-      document.body.classList.remove("no-scroll");
-      menuBtn?.setAttribute("aria-expanded","false");
-      overlay?.setAttribute("aria-hidden","true");
-    }
-    if (menuBtn && sidebar && overlay) {
-      menuBtn.addEventListener("click", () => sidebar.classList.contains("is-open") ? closeMenu() : openMenu());
-      overlay.addEventListener("click", closeMenu);
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
-      sidebar.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
-        if (window.matchMedia("(max-width: 820px)").matches) closeMenu();
-      }));
-    }
-  </script>
+}
 
-  <script src="/gallery.js"></script>
+placeWord("GRAPHIC",0,0,[0,1]);     
+placeWord("SKG",2,5,[1,0]);         
+placeWord("MUSIC",4,2,[1,1]);       
+placeWord("LIFE",9,0,[0,1]);        
+placeWord("DREAM",1,9,[1,-1]);      
+
+for(let r=0;r<gridSize;r++){
+    for(let c=0;c<gridSize;c++){
+        if(grid[r][c]===""){
+            grid[r][c]=String.fromCharCode(65+Math.floor(Math.random()*26));
+        }
+    }
+}
+
+function renderGrid(){
+    gridElement.innerHTML="";
+    for(let r=0;r<gridSize;r++){
+        for(let c=0;c<gridSize;c++){
+            const cell=document.createElement("div");
+            cell.classList.add("cell");
+            cell.textContent=grid[r][c];
+            cell.dataset.row=r;
+            cell.dataset.col=c;
+
+            cell.addEventListener("mousedown",startSelection);
+            cell.addEventListener("mouseover",selecting);
+            cell.addEventListener("mouseup",endSelection);
+
+            gridElement.appendChild(cell);
+        }
+    }
+}
+
+function startSelection(e){
+    isSelecting=true;
+    selectedCells=[];
+    e.target.classList.add("selected");
+    selectedCells.push(e.target);
+}
+
+function selecting(e){
+    if(!isSelecting) return;
+    if(!selectedCells.includes(e.target)){
+        e.target.classList.add("selected");
+        selectedCells.push(e.target);
+    }
+}
+
+function endSelection(){
+    isSelecting=false;
+    let word="";
+    selectedCells.forEach(cell=>word+=cell.textContent);
+
+    let reversed=word.split("").reverse().join("");
+
+    if(words.includes(word) && !foundWords.includes(word)){
+        markFound(word);
+    }else if(words.includes(reversed) && !foundWords.includes(reversed)){
+        markFound(reversed);
+    }else{
+        selectedCells.forEach(cell=>cell.classList.remove("selected"));
+    }
+}
+
+function markFound(word){
+    foundWords.push(word);
+    selectedCells.forEach(cell=>{
+        cell.classList.remove("selected");
+        cell.classList.add("found");
+    });
+
+    counter.textContent=`${foundWords.length} / ${words.length} words found`;
+
+    showModal(word);
+}
+
+function showModal(word){
+    document.getElementById("wordTitle").textContent=word;
+    document.getElementById("modal").style.display="flex";
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display="none";
+}
+
+renderGrid();
+
+</script>
+
 </body>
 </html>
