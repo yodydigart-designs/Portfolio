@@ -1,237 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CGS Works – Word Search</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aris Kavalariou</title>
 
-<style>
-body{
-    margin:0;
-    background:#0d0f14;
-    font-family:Arial, Helvetica, sans-serif;
-    color:white;
-    overflow:hidden;
-}
-
-#gameWrapper{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:20px;
-}
-
-#counter{
-    font-size:20px;
-    letter-spacing:2px;
-}
-
-#grid{
-    display:grid;
-    grid-template-columns:repeat(10,50px);
-    grid-template-rows:repeat(10,50px);
-    gap:5px;
-}
-
-.cell{
-    width:50px;
-    height:50px;
-    background:#151922;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    font-size:18px;
-    cursor:pointer;
-    user-select:none;
-    border-radius:6px;
-    transition:0.2s;
-}
-
-.cell.selected{
-    background:#2e3b55;
-}
-
-.cell.found{
-    background:#00b894;
-    color:black;
-}
-
-#modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.6);
-    backdrop-filter:blur(10px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-}
-
-#modalContent{
-    background:#111;
-    padding:40px;
-    border-radius:20px;
-    width:60%;
-    max-width:600px;
-    text-align:center;
-    animation:pop 0.3s ease;
-}
-
-@keyframes pop{
-    from{transform:scale(0.8);opacity:0;}
-    to{transform:scale(1);opacity:1;}
-}
-
-button{
-    margin-top:20px;
-    padding:10px 20px;
-    border:none;
-    border-radius:10px;
-    background:white;
-    cursor:pointer;
-}
-</style>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon2.svg" />
+  <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
+  <div class="layout">
 
-<div id="gameWrapper">
-    <div id="counter">0 / 5 words found</div>
-    <div id="grid"></div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar__top">
+        <a class="brand" href="/index.html">
+          <img src="/assets/logo.svg" class="brand__logo" alt="Logo">
+          <span class="brand__name">Odisseas Tsantekides</span>
+        </a>
+
+        <nav class="nav">
+          <p class="nav__label">Projects</p>
+          <ul class="nav__list">
+            <li><a href="/projects/project-1.html"  class="active">Aris Kavalariou</a></li>
+            <li><a href="/projects/project-2.html">Domain Tsantekides</a></li>
+            <li><a href="/projects/project-5.html">CGS Works</a></li>
+            <li><a href="/projects/project-3.html">Raw Frequencies</a></li>
+            <li><a href="/projects/project-4.html">Selected Small Works</a></li>
+          </ul>
+        </nav>
+
+        <div class="social">
+          <p class="nav__label">Social</p>
+          <ul class="social__list">
+            <li><a href="https://instagram.com/yody_digart" target="_blank" rel="noreferrer">Instagram</a></li>
+            <li><a href="https://behance.net/odisseastsad24" target="_blank" rel="noreferrer">Behance</a></li>
+            <li><a href="https://www.linkedin.com/in/oditsad99" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar__spacer"></div>
+
+        <nav class="nav nav--secondary">
+          <ul class="nav__list nav__list--secondary">
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/gallery.html">Gallery</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="sidebar__footer">
+        <small>© <span id="year"></span> Odisseas Tsantekides</small>
+      </div>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="content">
+      <div class="proj-wrap">
+
+        <div class="proj-top">
+          <div>
+            <div class="breadcrumb"><a href="/index.html">Home</a> / Aris Kavalariou</div>
+            <h1>Aris Kavalariou</h1>
+          </div>
+          <a href="/index.html" class="back-btn">← Back</a>
+        </div>
+
+        <!-- HERO IMAGE -->
+<div class="proj-hero">
+  <img src="/assets/Logo-Teliko.png" alt="Main Logo" style="border-radius:16px;">
 </div>
 
-<div id="modal">
-    <div id="modalContent">
-        <h2 id="wordTitle"></h2>
+<br>
 
-        <!-- ===================================== -->
-        <!--  🔥 ΕΔΩ ΞΕΚΙΝΑΕΙ ΤΟ CONTENT ΣΟΥ        -->
-        <!--  Μπορείς να βάλεις κείμενο, εικόνες,   -->
-        <!--  οτιδήποτε θες για κάθε project        -->
-        <!-- ===================================== -->
+<!-- FINAL SHOTS -->
+<div class="proj-card">
 
-        <p>Βάλε εδώ περιγραφή για το project.</p>
-        <img src="" style="max-width:100%;margin-top:20px;border-radius:10px;">
+  <!-- 2 μικρές εικόνες δίπλα-δίπλα -->
+  <div style="display:flex; gap:16px; margin-top:12px;">
+    <img src="/assets/final5.png" 
+         style="width:50%; border-radius:16px;" alt="final5">
 
-        <!-- ===================================== -->
-        <!--  🔥 ΕΔΩ ΤΕΛΕΙΩΝΕΙ ΤΟ CONTENT ΣΟΥ        -->
-        <!-- ===================================== -->
-
-        <button onclick="closeModal()">Close</button>
-    </div>
+    <img src="/assets/Logo_NoFill_White.png" 
+         style="width:50%; border-radius:16px;" alt="Logo No Fill">
+  </div>
 </div>
 
-<script>
+    </main>
 
-const words = ["GRAPHIC","SKG","MUSIC","LIFE","DREAM"];
-const gridSize = 10;
-const gridElement = document.getElementById("grid");
-const counter = document.getElementById("counter");
+  </div>
 
-let foundWords = [];
-let isSelecting = false;
-let selectedCells = [];
-
-const grid = Array(gridSize).fill().map(()=>Array(gridSize).fill(""));
-
-function placeWord(word,row,col,dir){
-    for(let i=0;i<word.length;i++){
-        let r=row+(dir[0]*i);
-        let c=col+(dir[1]*i);
-        grid[r][c]=word[i];
-    }
-}
-
-placeWord("GRAPHIC",0,0,[0,1]);     
-placeWord("SKG",2,5,[1,0]);         
-placeWord("MUSIC",4,2,[1,1]);       
-placeWord("LIFE",9,0,[0,1]);        
-placeWord("DREAM",1,9,[1,-1]);      
-
-for(let r=0;r<gridSize;r++){
-    for(let c=0;c<gridSize;c++){
-        if(grid[r][c]===""){
-            grid[r][c]=String.fromCharCode(65+Math.floor(Math.random()*26));
-        }
-    }
-}
-
-function renderGrid(){
-    gridElement.innerHTML="";
-    for(let r=0;r<gridSize;r++){
-        for(let c=0;c<gridSize;c++){
-            const cell=document.createElement("div");
-            cell.classList.add("cell");
-            cell.textContent=grid[r][c];
-            cell.dataset.row=r;
-            cell.dataset.col=c;
-
-            cell.addEventListener("mousedown",startSelection);
-            cell.addEventListener("mouseover",selecting);
-            cell.addEventListener("mouseup",endSelection);
-
-            gridElement.appendChild(cell);
-        }
-    }
-}
-
-function startSelection(e){
-    isSelecting=true;
-    selectedCells=[];
-    e.target.classList.add("selected");
-    selectedCells.push(e.target);
-}
-
-function selecting(e){
-    if(!isSelecting) return;
-    if(!selectedCells.includes(e.target)){
-        e.target.classList.add("selected");
-        selectedCells.push(e.target);
-    }
-}
-
-function endSelection(){
-    isSelecting=false;
-    let word="";
-    selectedCells.forEach(cell=>word+=cell.textContent);
-
-    let reversed=word.split("").reverse().join("");
-
-    if(words.includes(word) && !foundWords.includes(word)){
-        markFound(word);
-    }else if(words.includes(reversed) && !foundWords.includes(reversed)){
-        markFound(reversed);
-    }else{
-        selectedCells.forEach(cell=>cell.classList.remove("selected"));
-    }
-}
-
-function markFound(word){
-    foundWords.push(word);
-    selectedCells.forEach(cell=>{
-        cell.classList.remove("selected");
-        cell.classList.add("found");
-    });
-
-    counter.textContent=`${foundWords.length} / ${words.length} words found`;
-
-    showModal(word);
-}
-
-function showModal(word){
-    document.getElementById("wordTitle").textContent=word;
-    document.getElementById("modal").style.display="flex";
-}
-
-function closeModal(){
-    document.getElementById("modal").style.display="none";
-}
-
-renderGrid();
-
-</script>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear()
+  </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
